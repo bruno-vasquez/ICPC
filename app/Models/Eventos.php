@@ -10,4 +10,8 @@ class Eventos extends Model
     use HasFactory;
     protected $fillable = ['nombre','descripción','fechaIni', 'fechaFin','requisitos', 
                             'encargado', 'lugar'];
+    public function tipoEventos()
+    { 
+        return $this->belongsTo(TipoEventos::class, 'id_tipoEventos');
+    }
 }

@@ -23,8 +23,12 @@ class Eventos extends Migration
             $table->string('encargado');
             $table->string('lugar');
             //$table->image('afiche');
-            //$table-> string('tipoEvento')
             $table->timestamps();
+            $table->foreignId('id_tipoEventos')
+            ->nullable()
+            ->contrained('tipoEventod')
+            ->cascadeOnUpdate()
+            ->nullOnDelete();
         });
     }
 
