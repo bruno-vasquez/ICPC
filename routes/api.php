@@ -23,3 +23,7 @@ Route::post('/Eventos','App\Http\Controllers\EventosController@store'); //crear 
 Route::get('/Eventos/{id}','App\Http\Controllers\EventosController@show'); //para mostrarlos los registros
 Route::put('/Eventos/{id}','App\Http\Controllers\EventosController@update'); //actualizar un registro
 Route::delete('/Eventos/{id}','App\Http\Controllers\EventosController@destroy'); //borrar un registro
+
+Route::get('/TipoEventos','App\Http\Controllers\TipoEventosController@index'); //para tener todos los registros y mostrarlos
+Route::post('/TipoEventos','App\Http\Controllers\TipoEventosController@store'); //para tener todos los registros y mostrarlos
+Route::delete('/TipoEventos/{id}','App\Http\Controllers\TipoEventosController@destroy'); //borrar un registro
