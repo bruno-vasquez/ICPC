@@ -15,8 +15,8 @@ class EventosController extends Controller
      */
     public function index()
     {
-        $evento=Evento::all();
-        return $evento;
+        $eventos=Eventos::all();
+        return $eventos;
     }
 
     /**
@@ -58,7 +58,7 @@ class EventosController extends Controller
         $eventos -> lugar = $request -> lugar;
 
         $eventos -> save();
-        return $evento;
+        return $eventos;
     }
 
     /**
@@ -69,8 +69,8 @@ class EventosController extends Controller
      */
     public function show(Eventos $eventos)
     {
-        $evento=Eventos::find($id);
-        return $evento;
+        $eventos=Eventos::find($id);
+        return $eventos;
     }
 
     /**
@@ -103,7 +103,7 @@ class EventosController extends Controller
         $eventos -> lugar = $request -> lugar;
 
         $eventos -> save();
-        return $evento;
+        return $eventos;
     }
 
     /**
@@ -114,7 +114,7 @@ class EventosController extends Controller
      */
     public function destroy(Eventos $eventos)
     {
-        $evento = Eventos::destroy($id);
-        return evento;
+        $eventos = Eventos::destroy($id);
+        return $eventos;
     }
 }
