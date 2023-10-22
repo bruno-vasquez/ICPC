@@ -26,6 +26,6 @@ class TipoEventos extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tipo_eventos');
     }
 }
