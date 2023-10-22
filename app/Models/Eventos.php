@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Eventos extends Model
 {
     use HasFactory;
-    protected $fillable = ['nombre','descripción','fechaIni', 'fechaFin','requisitos', 
+    protected $fillable = ['nombre','descripcion','fechaIni', 'fechaFin','requisitos', 
                             'encargado', 'lugar'];
     public function tipoEventos()
     { 

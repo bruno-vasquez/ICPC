@@ -40,7 +40,7 @@ class EventosController extends Controller
         $validation = $request->validate([
 
             'nombre' => 'required | min:3 | max:30' ,
-            'descripción' => 'required  | min:4 | max:100' ,
+            'descripcion' => 'required  | min:4 | max:100' ,
             'fechaIni' => 'required' ,
             'fechaFin' => 'required' ,
             'requisitos' => 'required' ,
@@ -50,7 +50,7 @@ class EventosController extends Controller
         
         $eventos = new Eventos ();
         $eventos -> nombre = $request -> nombre;
-        $eventos -> descripción = $request -> descripción;
+        $eventos -> descripcion = $request -> descripcion;
         $eventos -> fechaIni = $request -> fechaIni;
         $eventos -> fechaFin = $request -> fechaFin;
         $eventos -> requisitos = $request -> requisitos;
@@ -96,7 +96,7 @@ class EventosController extends Controller
     {
         $eventos = Eventos::findOrFail ($request->id);
         $eventos -> nombre = $request -> nombre;
-        $eventos -> descripción = $request -> descripción;
+        $eventos -> descripcion = $request -> descripcion;
         $eventos -> fechaIni = $request -> fechaIni;
         $eventos -> fechaFin = $request -> fechaFin;
         $eventos -> requisitos = $request -> requisitos;
