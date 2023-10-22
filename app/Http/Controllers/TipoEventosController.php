@@ -85,7 +85,7 @@ class TipoEventosController extends Controller
      * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipoEventos $tipoEventos)
+    public function destroy($id)
     {
         $tipoEventos = TipoEventos::destroy($id);
         return $tipoEventos;

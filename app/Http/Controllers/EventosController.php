@@ -39,7 +39,7 @@ class EventosController extends Controller
     {
         $validation = $request->validate([
 
-            'nombre' => 'required | alpha | min:3 | max:30' ,
+            'nombre' => 'required | min:3 | max:30' ,
             'descripción' => 'required  | min:4 | max:100' ,
             'fechaIni' => 'required' ,
             'fechaFin' => 'required' ,
@@ -50,12 +50,13 @@ class EventosController extends Controller
         
         $eventos = new Eventos ();
         $eventos -> nombre = $request -> nombre;
-        $eventos -> descripción = $request -> descripcion;
+        $eventos -> descripción = $request -> descripción;
         $eventos -> fechaIni = $request -> fechaIni;
         $eventos -> fechaFin = $request -> fechaFin;
         $eventos -> requisitos = $request -> requisitos;
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
+        $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
         $eventos -> save();
         return $eventos;
@@ -67,7 +68,7 @@ class EventosController extends Controller
      * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function show(Eventos $eventos)
+    public function show($id)
     {
         $eventos=Eventos::find($id);
         return $eventos;
@@ -95,12 +96,13 @@ class EventosController extends Controller
     {
         $eventos = Eventos::findOrFail ($request->id);
         $eventos -> nombre = $request -> nombre;
-        $eventos -> descripción = $request -> descripcion;
+        $eventos -> descripción = $request -> descripción;
         $eventos -> fechaIni = $request -> fechaIni;
         $eventos -> fechaFin = $request -> fechaFin;
         $eventos -> requisitos = $request -> requisitos;
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
+        $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
         $eventos -> save();
         return $eventos;
@@ -112,7 +114,7 @@ class EventosController extends Controller
      * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Eventos $eventos)
+    public function destroy($id)
     {
         $eventos = Eventos::destroy($id);
         return $eventos;
