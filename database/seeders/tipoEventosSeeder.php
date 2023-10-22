@@ -30,6 +30,6 @@ class tipoEventosSeeder extends Seeder
             ],
 
         ];
-        \DB::table('tipoEventos')->insert($data);   
+        \DB::table('tipo_eventos')->insert($data);   
     }
 }

@@ -13,7 +13,7 @@ class TipoEventos extends Migration
      */
     public function up()
     {
-        Schema::create('tipoEventos', function (Blueprint $table) {
+        Schema::create('tipo_eventos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre')->nullable();
         });
