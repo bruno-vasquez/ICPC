@@ -40,11 +40,11 @@ class EventosController extends Controller
         $validation = $request->validate([
 
             'nombre' => 'required | min:3 | max:30' ,
-            'descripcion' => 'required  | min:4 | max:100' ,
+            'descripcion' => 'required | min:4 | max:100' ,
             'fechaIni' => 'required' ,
             'fechaFin' => 'required' ,
             'requisitos' => 'required' ,
-            'encargado' => 'required | alpha | min:3 | max:40' ,
+            'encargado' => 'required | min:3 | max:40' ,
             'lugar' => 'required | min:3 | max:20' ,
         ]);
         
