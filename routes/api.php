@@ -27,3 +27,13 @@ Route::delete('/Eventos/{id}','App\Http\Controllers\EventosController@destroy');
 Route::get('/TipoEventos','App\Http\Controllers\TipoEventosController@index'); //para tener todos los registros y mostrarlos
 Route::post('/TipoEventos','App\Http\Controllers\TipoEventosController@store'); //para tener todos los registros y mostrarlos
 Route::delete('/TipoEventos/{id}','App\Http\Controllers\TipoEventosController@destroy'); //borrar un registro
+
+Route::get('/TipoCompetencias','App\Http\Controllers\TipoCompetenciasController@index'); //para tener todos los registros y mostrarlos
+Route::post('/TipoCompetencias','App\Http\Controllers\TipoCompetenciasController@store'); //para tener todos los registros y mostrarlos
+Route::delete('/TipoCompetencias/{id}','App\Http\Controllers\TipoCompetenciasController@destroy'); //borrar un registro
+
+Route::get('/Competencias','App\Http\Controllers\CompetenciasController@index'); //para tener todos los registros y mostrarlos
+Route::post('/Competencias','App\Http\Controllers\CompetenciasController@store'); //crear un registro
+Route::get('/Competencias/{id}','App\Http\Controllers\CompetenciasController@show'); //para mostrarlos los registros
+Route::put('/Competencias/{id}','App\Http\Controllers\CompetenciasController@update'); //actualizar un registro
+Route::delete('/Competencias/{id}','App\Http\Controllers\CompetenciasController@destroy'); //borrar un registro
