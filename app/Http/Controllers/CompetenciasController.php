@@ -45,7 +45,7 @@ class CompetenciasController extends Controller
             'fechaFin' => 'required' ,
             'requisitos' => 'required' ,
             'encargado' => 'required | min:3 | max:40' ,
-            'email' => 'reqired' ,
+            'email' => 'required' ,
             'lugar' => 'required | min:3 | max:20' ,
             'costo' => 'required',
         ]);
