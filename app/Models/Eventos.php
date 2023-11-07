@@ -9,7 +9,7 @@ class Eventos extends Model
 {
     use HasFactory;
     protected $fillable = ['nombre','descripcion','fechaIni', 'fechaFin','requisitos', 
-                            'encargado', 'lugar']; //añadir imagen
+                            'encargado', 'lugar','estado','imagen']; //añadir imagen
     public function tipoEventos()
     { 
         return $this->belongsTo(TipoEventos::class, 'id_tipoEventos');
