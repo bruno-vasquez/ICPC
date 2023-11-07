@@ -37,7 +37,7 @@ class CompetenciasController extends Controller
      */
     public function store(Request $request)
     {
-       /* $validation = $request->validate([
+        $validation = $request->validate([
 
             'nombre' => 'required | min:3 | max:30' ,
             'descripcion' => 'required | min:4 | max:100' ,
@@ -49,7 +49,7 @@ class CompetenciasController extends Controller
             'lugar' => 'required | min:3 | max:20' ,
             'costo' => 'required',
         ]);
-       */
+       
       $competencias = new Competencias();
       $competencias -> nombre = $request -> nombre;
       $competencias -> descripcion = $request -> descripcion;
@@ -72,6 +72,7 @@ class CompetenciasController extends Controller
 
       $competencias -> save();
       return $competencias;
+    }
     /**
      * Display the specified resource.
      *

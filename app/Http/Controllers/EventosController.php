@@ -66,7 +66,6 @@ class EventosController extends Controller
             $imagen->move($rutaGuardarImg, $imagenEvento);
             $eventos['imagen'] = "$imagenEvento";
         }
-        $eventos -> 
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
         $eventos -> save();
