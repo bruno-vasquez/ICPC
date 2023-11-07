@@ -46,7 +46,8 @@ class EventosController extends Controller
             'requisitos' => 'required' ,
             'encargado' => 'required | min:3 | max:40' ,
             'lugar' => 'required | min:3 | max:20' ,
-        //    'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
+            'estado' => 'required',
+            'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
         ]);
         
         $eventos = new Eventos ();
@@ -57,12 +58,15 @@ class EventosController extends Controller
         $eventos -> requisitos = $request -> requisitos;
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
-        /*if($imagen = $request->file('imagen')){
+        $eventos -> estado = $request -> estado;
+        if($imagen = $request->file('imagen'))
+        {
             $rutaGuardarImg = 'imagen/';
             $imagenEvento = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
             $imagen->move($rutaGuardarImg, $imagenEvento);
             $eventos['imagen'] = "$imagenEvento";
-        }*/
+        }
+        $eventos -> 
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
         $eventos -> save();
@@ -109,8 +113,19 @@ class EventosController extends Controller
         $eventos -> requisitos = $request -> requisitos;
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
+        $eventos -> estado = $request -> estado;
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
-
+        if($imagen = $request->file('imagen'))
+        {
+            $rutaGuardarImg = 'imagen/';
+            $imagenEvento = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImg, $imagenEvento);
+            $competencias['imagen'] = "$imagenEvento";
+        }
+        else
+        {
+            unset($prod['imagen']);
+        }
         $eventos -> save();
         return $eventos;
     }

@@ -37,17 +37,21 @@ class CompetenciasController extends Controller
      */
     public function store(Request $request)
     {
-       /* $validation = $request->validate([
+        /*
+        $validation = $request->validate([
 
-            'nombre' => 'required | min:3 | max:30' ,
+            'nombre' => 'required | min:3 | max:60' ,
             'descripcion' => 'required | min:4 | max:100' ,
             'fechaIni' => 'required' ,
             'fechaFin' => 'required' ,
             'requisitos' => 'required' ,
             'encargado' => 'required | min:3 | max:40' ,
             'email' => 'reqired' ,
-            'lugar' => 'required | min:3 | max:20' ,
+            'lugar' => 'required | min:3 | max:40' ,
             'costo' => 'required',
+            'estado' => 'required',
+            'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
+
         ]);
        */
         $competencias = new Competencias();
@@ -60,6 +64,14 @@ class CompetenciasController extends Controller
         $competencias -> email = $request -> email;
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
+        $competencias -> estado = $request -> estado;
+        if($imagen = $request->file('imagen'))
+        {
+            $rutaGuardarImg = 'imagen/';
+            $imagenCompetencia = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImg, $imagenCompetencia);
+            $competencias['imagen'] = "$imagenCompetencia";
+        }
         $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
 
         $competencias -> save();
@@ -108,8 +120,20 @@ class CompetenciasController extends Controller
         $competencias -> email = $request -> email;
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
-        $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
+        $competencias -> estado = $request -> estado;
+        if($imagen = $request->file('imagen'))
+        {
+            $rutaGuardarImg = 'imagen/';
+            $imagenCompetencia = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImg, $imagenCompetencia);
+            $competencias['imagen'] = "$imagenCompetencia";
+        }
+        else
+        {
+            unset($prod['imagen']);
+        }
 
+        $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
         $competencias -> save();
         return $competencias;
     }
