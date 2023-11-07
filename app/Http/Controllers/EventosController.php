@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Eventos;
 use App\Models\TipoEventos;
 use Illuminate\Http\Request;
+use File;
 
 class EventosController extends Controller
 {
@@ -59,13 +60,31 @@ class EventosController extends Controller
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
         $eventos -> estado = $request -> estado;
-        if($imagen = $request->file('imagen'))
-        {
-            $rutaGuardarImg = 'imagen/';
-            $imagenEvento = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
-            $imagen->move($rutaGuardarImg, $imagenEvento);
-            $eventos['imagen'] = "$imagenEvento";
+        if ($imagen = $request->file('imagen')) {
+            // Directorio para almacenar las imágenes
+            $rutaGuardarImg = public_path('imagen/');
+        
+            // Verificar si el directorio existe, y si no, crearlo
+            if (!file_exists($rutaGuardarImg)) {
+                if (File::makeDirectory($rutaGuardarImg, 0777, true)) {
+                    // Directorio creado con éxito
+                } else {
+                    // Error al crear el directorio
+                    return response()->json(['error' => 'Error al crear el directorio'], 500);
+                }
+            }
+        
+            // Resto del código para mover y guardar la imagen
+            $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            
+            try {
+                $imagen->move($rutaGuardarImg, $imagenEvento);
+                $eventos['imagen'] = $imagenEvento;
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
+        
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
         $eventos -> save();
