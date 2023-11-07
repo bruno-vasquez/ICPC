@@ -47,7 +47,7 @@ class EventosController extends Controller
             'encargado' => 'required | min:3 | max:40' ,
             'lugar' => 'required | min:3 | max:20' ,
             'estado' => 'required',
-            'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
+           // 'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
         ]);
         
         $eventos = new Eventos ();
