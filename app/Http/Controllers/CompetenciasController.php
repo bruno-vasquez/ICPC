@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Competencias;
 use App\Models\TipoCompetencias;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class CompetenciasController extends Controller
 {
@@ -61,13 +63,28 @@ class CompetenciasController extends Controller
       $competencias -> lugar = $request -> lugar;
       $competencias -> costo = $request -> costo;
       $competencias -> estado = $request -> estado;
-      if($imagen = $request->file('imagen'))
-      {
-          $rutaGuardarImg = 'imagen/';
-          $imagenCompetencia = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
-          $imagen->move($rutaGuardarImg, $imagenCompetencia);
-          $competencias['imagen'] = "$imagenCompetencia";
-      }
+
+      if ($imagen = $request->file('imagen')) {
+        $rutaGuardarImg = 'imagen/';
+
+        $imagenCompetencia = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+
+        try {
+            // Utilizamos el disco "public" de Laravel para almacenar la imagen
+            Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenCompetencia);
+
+            // Ruta completa de la imagen (si es necesario)
+            $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenCompetencia}");
+
+            $competencias['imagen'] = $rutaCompletaImagen;
+
+            return response()->json(['message' => 'Imagen guardada con exito']);
+        } catch (\Exception $e) {
+            \Log::error('Error al guardar la imagen: ' . $e->getMessage());
+            return response()->json(['error' => 'Error al guardar la imagen'], 500);
+        }
+    }
+
       $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
 
       $competencias -> save();
@@ -116,17 +133,34 @@ class CompetenciasController extends Controller
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
         $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
-        if($imagen = $request->file('imagen'))
+        /*
+        if ($request->hasFile('imagen')) 
         {
+            // Eliminamos la imagen anterior (opcional)
+            Storage::disk('public')->delete($competencias->imagen);
+    
+            // Directorio para almacenar las imágenes
             $rutaGuardarImg = 'imagen/';
-            $imagenCompetencia = date('YmdHis'). "." . $imagen->getClientOriginalExtension();
-            $imagen->move($rutaGuardarImg, $imagenCompetencia);
-            $competencias['imagen'] = "$imagenCompetencia";
+    
+            // Nombre de la nueva imagen
+            $imagenCompetencia = date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+    
+            try {
+                // Almacenamos la nueva imagen
+                $request->file('imagen')->storeAs($rutaGuardarImg, $imagenCompetencia, 'public');
+    
+                // Actualizamos el campo de imagen en el modelo
+                $competencias->update(['imagen' => "{$rutaGuardarImg}{$imagenCompetencia}"]);
+    
+                return response()->json(['message' => 'Imagen actualizada con exito']);
+            } catch (\Exception $e) {
+                \Log::error('Error al actualizar la imagen: ' . $e->getMessage());
+                return response()->json(['error' => 'Error al actualizar la imagen'], 500);
+            }
         }
-        else
-        {
-            unset($prod['imagen']);
-        }
+        // Lógica de actualización para otros campos si no se proporciona una nueva imagen
+        // ...
+        */
         $competencias -> save();
         return $competencias;
     }

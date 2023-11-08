@@ -19,7 +19,7 @@ class CompetenciasSeeder extends Seeder
                         'descripcion'=> 'Competencia interuniversitaria 2023, ven y demuestra tus habilidades',
                         'fechaIni'=> '2023-02-15',
                         'fechaFin'=> '2023-02-17',
-                        'requisitos'=> 'Inscripción previa, Ci, Foto Carnet',
+                        'requisitos'=> 'Inscripcion previa, Ci, Foto Carnet',
                         'encargado'=> 'Corina Justina Flores Villarroel',
                         'email'=> 'corinaflores.v@fcyt.umss.edu.bo',
                         'lugar'=> 'MEMI UMSS',

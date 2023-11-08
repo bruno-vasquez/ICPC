@@ -19,7 +19,7 @@ class EventosSeeder extends Seeder
                         'descripcion'=> 'Reclutamiento para la ICPC a realizarse en la umss con el apoyo de todas las universidades',
                         'fechaIni'=> '2023-03-15',
                         'fechaFin'=> '2023-04-17',
-                        'requisitos'=> 'Inscripción previa, estudiante universitario',
+                        'requisitos'=> 'Inscripcion previa, estudiante universitario',
                         'encargado'=> 'Leticia Blanco',
                         'lugar'=> 'Infolab',
                         'id_tipoEventos'=> 3,
