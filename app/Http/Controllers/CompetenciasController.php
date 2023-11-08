@@ -64,7 +64,7 @@ class CompetenciasController extends Controller
       $competencias -> costo = $request -> costo;
       $competencias -> estado = $request -> estado;
 
-      if ($imagen = $request->file('imagen')) {
+      /*if ($imagen = $request->file('imagen')) {
         $rutaGuardarImg = 'imagen/';
 
         $imagenCompetencia = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
@@ -83,7 +83,7 @@ class CompetenciasController extends Controller
             \Log::error('Error al guardar la imagen: ' . $e->getMessage());
             return response()->json(['error' => 'Error al guardar la imagen'], 500);
         }
-    }
+    }*/
 
       $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
 
