@@ -24,6 +24,8 @@ class CompetenciasSeeder extends Seeder
                         'email'=> 'corinaflores.v@fcyt.umss.edu.bo',
                         'lugar'=> 'MEMI UMSS',
                         'costo' => 100,
+                        'estado' => 'inactivo',
+                        'imagen' => null,
                         'id_tipoCompetencias'=> 1,
                     ],
                 ];

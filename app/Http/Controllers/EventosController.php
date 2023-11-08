@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Eventos;
 use App\Models\TipoEventos;
 use Illuminate\Http\Request;
@@ -18,6 +20,7 @@ class EventosController extends Controller
         $eventos=Eventos::all();
         return $eventos;
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,6 +30,7 @@ class EventosController extends Controller
     {
         //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,6 +40,7 @@ class EventosController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
+
             'nombre' => 'required | min:3 | max:30' ,
             'descripcion' => 'required | min:4 | max:100' ,
             'fechaIni' => 'required' ,
@@ -57,22 +62,35 @@ class EventosController extends Controller
         $eventos -> lugar = $request -> lugar;
         $eventos -> estado = $request -> estado;
 
-        if ($request->hasFile('imagen')) {
+        if ($imagen = $request->file('imagen')) {
             $rutaGuardarImg = 'imagen/';
-            $imagenEvento = date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
-        
+
+            $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+
             try {
-                $request->file('imagen')->storeAs($rutaGuardarImg, $imagenEvento, 'public');
-                $eventos->imagen = "{$rutaGuardarImg}{$imagenEvento}";
+                // Utilizamos el disco "public" de Laravel para almacenar la imagen
+                Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenEvento);
+
+                // Ruta completa de la imagen (si es necesario)
+                $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenEvento}");
+
+                $eventos['imagen'] = $rutaCompletaImagen;
+
+                return response()->json(['message' => 'Imagen guardada con éxito']);
             } catch (\Exception $e) {
-                \Log::error('Error al almacenar la imagen: ' . $e->getMessage());
-                return response()->json(['error' => 'Error al almacenar la imagen'], 500);
+                \Log::error('Error al guardar la imagen: ' . $e->getMessage());
+                return response()->json(['error' => 'Error al guardar la imagen'], 500);
             }
         }
+        
+        
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
+
         $eventos -> save();
         return $eventos;
     }
+
+
     /**
      * Display the specified resource.
      *
@@ -84,6 +102,7 @@ class EventosController extends Controller
         $eventos=Eventos::find($id);
         return $eventos;
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -94,6 +113,7 @@ class EventosController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -127,6 +147,7 @@ class EventosController extends Controller
         $eventos -> save();
         return $eventos;
     }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -22,6 +22,8 @@ class EventosSeeder extends Seeder
                         'requisitos'=> 'Inscripcion previa, estudiante universitario',
                         'encargado'=> 'Leticia Blanco',
                         'lugar'=> 'Infolab',
+                        'estado' => 'inactivo',
+                        'imagen' => null,
                         'id_tipoEventos'=> 3,
                     ],    
                 ];
