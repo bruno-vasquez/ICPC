@@ -57,27 +57,18 @@ class EventosController extends Controller
         $eventos -> lugar = $request -> lugar;
         $eventos -> estado = $request -> estado;
 
-        if ($imagen = $request->file('imagen')) {
+        if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
-
-            $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
-            
+            $imagenEvento = date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+        
             try {
-                // Utilizamos el disco "public" de Laravel para almacenar la imagen
-                Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenEvento);
-    
-                // Ruta completa de la imagen (si es necesario)
-                $rutaCompletaImagen = Storage::disk('public')->url("imagen/{$imagenEvento}");
-    
-                $eventos->imagen = $rutaCompletaImagen;
-    
+                $request->file('imagen')->storeAs($rutaGuardarImg, $imagenEvento, 'public');
+                $eventos->imagen = "{$rutaGuardarImg}{$imagenEvento}";
             } catch (\Exception $e) {
-                \Log::error('Error al guardar la imagen: ' . $e->getMessage());
-                return response()->json(['error' => 'Error al guardar la imagen'], 500);
+                \Log::error('Error al almacenar la imagen: ' . $e->getMessage());
+                return response()->json(['error' => 'Error al almacenar la imagen'], 500);
             }
         }
-
-        
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
         $eventos -> save();
         return $eventos;
