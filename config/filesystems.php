@@ -50,8 +50,8 @@ return [
 
         'public' => [
             'driver' => 'railway',
-            'root' => env('https://wanting-circle-production.up.railway.app') . '/public',
-            'url' => env('Rhttps://wanting-circle-production.up.railway.app'),
+            'root' => storage_path('app/public') ,
+            'url' => env('https://wanting-circle-production.up.railway.app/'),
             'visibility' => 'public',
         ],             
 

@@ -75,8 +75,7 @@ class EventosController extends Controller
                 $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenEvento}");
 
                 $eventos['imagen'] = $rutaCompletaImagen;
-
-                return response()->json(['message' => 'Imagen guardada con éxito']);
+                
             } catch (\Exception $e) {
                 \Log::error('Error al guardar la imagen: ' . $e->getMessage());
                 return response()->json(['error' => 'Error al guardar la imagen'], 500);
