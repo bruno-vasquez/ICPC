@@ -62,28 +62,24 @@ class EventosController extends Controller
         $eventos -> estado = $request -> estado;
         if ($imagen = $request->file('imagen')) {
             // Directorio para almacenar las imágenes
-            $rutaGuardarImg = public_path('imagen/');
-        
-            // Verificar si el directorio existe, y si no, crearlo
-            if (!file_exists($rutaGuardarImg)) {
-                if (File::makeDirectory($rutaGuardarImg, 0777, true)) {
-                    // Directorio creado con éxito
-                } else {
-                    // Error al crear el directorio
-                    return response()->json(['error' => 'Error al crear el directorio'], 500);
-                }
-            }
+            $rutaGuardarImg = 'imagen/';
         
             // Resto del código para mover y guardar la imagen
             $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
-            
+        
             try {
-                $imagen->move($rutaGuardarImg, $imagenEvento);
-                $eventos['imagen'] = $imagenEvento;
+                // Utilizamos Storage de Laravel para almacenar la imagen
+                $imagen->storeAs($rutaGuardarImg, $imagenEvento, 'public');
+        
+                // Ruta completa de la imagen (si es necesario)
+                $rutaCompletaImagen = storage_path("app/public/{$rutaGuardarImg}{$imagenEvento}");
+        
+                $eventos['imagen'] = $rutaCompletaImagen;
             } catch (\Exception $e) {
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }
+        
         
         $eventos -> id_tipoEventos = $request -> id_tipoEventos;
 
