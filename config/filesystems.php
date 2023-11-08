@@ -49,11 +49,11 @@ return [
         ],
 
         'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'driver' => 'railway',
+            'root' => env('https://wanting-circle-production.up.railway.app') . '/public',
+            'url' => env('Rhttps://wanting-circle-production.up.railway.app'),
             'visibility' => 'public',
-        ],
+        ],        
 
         's3' => [
             'driver' => 's3',

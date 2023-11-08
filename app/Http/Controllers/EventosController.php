@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Eventos;
 use App\Models\TipoEventos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use File;
 
 class EventosController extends Controller
@@ -60,23 +61,25 @@ class EventosController extends Controller
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
         $eventos -> estado = $request -> estado;
+
         if ($imagen = $request->file('imagen')) {
-            // Directorio para almacenar las imágenes
             $rutaGuardarImg = 'imagen/';
-        
-            // Resto del código para mover y guardar la imagen
+
             $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
-        
+
             try {
-                // Utilizamos Storage de Laravel para almacenar la imagen
-                $imagen->storeAs($rutaGuardarImg, $imagenEvento, 'public');
-        
+                // Utilizamos el disco "public" de Laravel para almacenar la imagen
+                Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenEvento);
+
                 // Ruta completa de la imagen (si es necesario)
-                $rutaCompletaImagen = storage_path("app/public/{$rutaGuardarImg}{$imagenEvento}");
-        
+                $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenEvento}");
+
                 $eventos['imagen'] = $rutaCompletaImagen;
+
+                return response()->json(['message' => 'Imagen guardada con éxito']);
             } catch (\Exception $e) {
-                return response()->json(['error' => $e->getMessage()], 500);
+                \Log::error('Error al guardar la imagen: ' . $e->getMessage());
+                return response()->json(['error' => 'Error al guardar la imagen'], 500);
             }
         }
         
