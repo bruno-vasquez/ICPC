@@ -50,10 +50,10 @@ return [
 
         'public' => [
             'driver' => 'railway',
-            'root' => storage_path('app/public') ,
-            'url' => env('https://wanting-circle-production.up.railway.app/'),
+            'root' => storage_path('app/public'),
+            'url' => 'https://wanting-circle-production.up.railway.app/storage',
             'visibility' => 'public',
-        ],             
+        ],         
 
         's3' => [
             'driver' => 's3',

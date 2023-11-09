@@ -63,7 +63,7 @@ class EventosController extends Controller
         $eventos -> estado = $request -> estado;
 
         if ($imagen = $request->file('imagen')) {
-            $rutaGuardarImg = 'imagen/';
+            $rutaGuardarImg = public_path('imagen/');
 
             $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
 
