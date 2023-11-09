@@ -49,7 +49,7 @@ class EventosController extends Controller
             'encargado' => 'required | min:3 | max:40' ,
             'lugar' => 'required | min:3 | max:20' ,
             'estado' => 'required',
-           // 'imagen' => 'required | image | mimes:jpeg, png, jpg, svg'
+            'imagen' => 'image | mimes:jpeg, png, jpg, svg'
         ]);
         
         $eventos = new Eventos ();
@@ -63,16 +63,16 @@ class EventosController extends Controller
         $eventos -> estado = $request -> estado;
 
         if ($imagen = $request->file('imagen')) {
-            $rutaGuardarImg = 'storage/imagen/';
+            $rutaGuardarImg = 'imagen/';
 
-            $imagenEvento = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+            $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $imagen->getClientOriginalExtension();
 
             try {
                 // Utilizamos el disco "public" de Laravel para almacenar la imagen
                 Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenEvento);
 
                 // Ruta completa de la imagen (si es necesario)
-                $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenEvento}");
+                $rutaCompletaImagen = Storage::disk('public')->url("{$rutaGuardarImg}{$imagenEvento}");
 
                 $eventos['imagen'] = $rutaCompletaImagen;
                 

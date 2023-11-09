@@ -51,7 +51,7 @@ return [
         'public' => [
             'driver' => 'railway',
             'root' => env('https://wanting-circle-production.up.railway.app') . '/public',
-            'url' => env('https://wanting-circle-production.up.railway.app/storage'),
+            'url' => env('https://wanting-circle-production.up.railway.app') . '/storage',
             'visibility' => 'public',
         ],  
         's3' => [
