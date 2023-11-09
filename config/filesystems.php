@@ -49,11 +49,13 @@ return [
         ],
 
         'public' => [
-            'driver' => 'railway',
-            'root' => env('RAILWAY_APP_PATH') . '/public',
-            'url' => env('RAILWAY_APP_URL') . '/storage',
-            'visibility' => 'public',
-        ],
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+        ],        
         
         's3' => [
             'driver' => 's3',
