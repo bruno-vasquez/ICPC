@@ -63,28 +63,21 @@ class CompetenciasController extends Controller
       $competencias -> lugar = $request -> lugar;
       $competencias -> costo = $request -> costo;
       $competencias -> estado = $request -> estado;
-
-      /*if ($imagen = $request->file('imagen')) {
+      
+      if ($request->hasFile('imagen')) 
+      {
         $rutaGuardarImg = 'imagen/';
+        $imagenCompetencia = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
 
-        $imagenCompetencia = date('YmdHis') . "." . $imagen->getClientOriginalExtension();
+        // Utilizamos el disco "public" de Laravel para almacenar la imagen
+        Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenCompetencia);
 
-        try {
-            // Utilizamos el disco "public" de Laravel para almacenar la imagen
-            Storage::disk('public')->putFileAs($rutaGuardarImg, $imagen, $imagenCompetencia);
+        // Construir la URL completa utilizando asset()
+        $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenCompetencia}");
 
-            // Ruta completa de la imagen (si es necesario)
-            $rutaCompletaImagen = Storage::disk('public')->path("{$rutaGuardarImg}{$imagenCompetencia}");
-
-            $competencias['imagen'] = $rutaCompletaImagen;
-
-            return response()->json(['message' => 'Imagen guardada con exito']);
-        } catch (\Exception $e) {
-            \Log::error('Error al guardar la imagen: ' . $e->getMessage());
-            return response()->json(['error' => 'Error al guardar la imagen'], 500);
-        }
-    }*/
-
+        // Asignar la URL completa a la propiedad en el modelo
+        $competencias->imagen = $urlImagen;
+    }
       $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
 
       $competencias -> save();
