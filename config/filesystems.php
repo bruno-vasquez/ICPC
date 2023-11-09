@@ -50,11 +50,10 @@ return [
 
         'public' => [
             'driver' => 'railway',
-            'root' => storage_path('app/public'),
-            'url' => 'https://wanting-circle-production.up.railway.app/storage',
+            'root' => env('https://wanting-circle-production.up.railway.app') . '/public',
+            'url' => env('https://wanting-circle-production.up.railway.app/storage'),
             'visibility' => 'public',
-        ],         
-
+        ],  
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
