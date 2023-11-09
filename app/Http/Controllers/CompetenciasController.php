@@ -125,35 +125,20 @@ class CompetenciasController extends Controller
         $competencias -> email = $request -> email;
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
-        $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
-        /*
         if ($request->hasFile('imagen')) 
         {
-            // Eliminamos la imagen anterior (opcional)
-            Storage::disk('public')->delete($competencias->imagen);
-    
-            // Directorio para almacenar las imágenes
             $rutaGuardarImg = 'imagen/';
+            $imagenCompetencia = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenCompetencia);
     
-            // Nombre de la nueva imagen
-            $imagenCompetencia = date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+            // Construir la URL completa utilizando asset()
+            $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenCompetencia}");
     
-            try {
-                // Almacenamos la nueva imagen
-                $request->file('imagen')->storeAs($rutaGuardarImg, $imagenCompetencia, 'public');
-    
-                // Actualizamos el campo de imagen en el modelo
-                $competencias->update(['imagen' => "{$rutaGuardarImg}{$imagenCompetencia}"]);
-    
-                return response()->json(['message' => 'Imagen actualizada con exito']);
-            } catch (\Exception $e) {
-                \Log::error('Error al actualizar la imagen: ' . $e->getMessage());
-                return response()->json(['error' => 'Error al actualizar la imagen'], 500);
-            }
+            // Asignar la URL completa a la propiedad en el modelo
+            $competencias->imagen = $urlImagen;
         }
-        // Lógica de actualización para otros campos si no se proporciona una nueva imagen
-        // ...
-        */
+        $competencias->id_tipoCompetencias = $request->id_tipoCompetencias;
+        // Guardar los cambios en la base de datos    
         $competencias -> save();
         return $competencias;
     }
