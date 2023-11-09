@@ -126,31 +126,23 @@ class EventosController extends Controller
         $eventos -> encargado = $request -> encargado;
         $eventos -> lugar = $request -> lugar;
         $eventos -> estado = $request -> estado;
-        $eventos -> id_tipoEventos = $request -> id_tipoEventos;
-        if ($request->file('imagen')) {
-            // Eliminamos la imagen anterior (opcional)
-            Storage::disk('public')->delete($eventos->imagen);
-    
-            // Directorio para almacenar las imágenes
+        if ($request->hasFile('imagen')) 
+        {
             $rutaGuardarImg = 'imagen/';
+            $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenEvento);
     
-            // Nombre de la nueva imagen
-            $imagenEvento = date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+            // Construir la URL completa utilizando asset()
+            $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenEvento}");
     
-            try {
-                // Almacenamos la nueva imagen
-                $request->file('imagen')->storeAs($rutaGuardarImg, $imagenEvento, 'public');
-    
-                // Actualizamos el campo de imagen en el modelo
-                $eventos->update(['imagen' => "{$rutaGuardarImg}{$imagenEvento}"]);
-    
-            } catch (\Exception $e) {
-                \Log::error('Error al actualizar la imagen: ' . $e->getMessage());
-                return response()->json(['error' => 'Error al actualizar la imagen'], 500);
-            }
+            // Asignar la URL completa a la propiedad en el modelo
+            $eventos->imagen = $urlImagen;
         }
-        $eventos -> save();
-        return $eventos;
+        $eventos->id_tipoEventos = $request->id_tipoEventos;
+        // Guardar los cambios en la base de datos
+        $eventos->save();
+        // Devolver la respuesta
+        return $eventos; 
     }
 
     /**
