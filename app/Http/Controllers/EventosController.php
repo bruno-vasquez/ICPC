@@ -64,17 +64,16 @@ class EventosController extends Controller
         // Verificar si se proporcionó una imagen
         if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
-
             $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
 
             // Utilizamos el disco "public" de Laravel para almacenar la imagen
             Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenEvento);
 
-            // Almacenar solo el nombre del archivo en la base de datos
-            $eventos->imagen = $imagenEvento;
-
             // Construir la URL completa utilizando asset()
             $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenEvento}");
+
+            // Asignar la URL completa a la propiedad en el modelo
+            $eventos->imagen = $urlImagen;
         }
 
         $eventos->id_tipoEventos = $request->id_tipoEventos;
@@ -82,7 +81,7 @@ class EventosController extends Controller
         $eventos->save();
 
         // Devolver la URL completa si se proporcionó una imagen
-        return response()->json(['eventos' => $eventos, 'urlImagen' => $urlImagen ?? null]);
+        return $eventos;
     }
 
 
