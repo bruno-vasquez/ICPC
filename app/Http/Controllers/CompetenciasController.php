@@ -41,15 +41,17 @@ class CompetenciasController extends Controller
     {
         $validation = $request->validate([
 
-            'nombre' => 'required | min:3 | max:30' ,
-            'descripcion' => 'required | min:4 | max:100' ,
+            'nombre' => 'required | min:3 | max:40' ,
+            'descripcion' => 'required | min:4 | max:400' ,
             'fechaIni' => 'required' ,
             'fechaFin' => 'required' ,
             'requisitos' => 'required' ,
-            'encargado' => 'required | min:3 | max:40' ,
+            'encargado' => 'required | min:3 | max:70' ,
             'email' => 'required' ,
-            'lugar' => 'required | min:3 | max:20' ,
+            'lugar' => 'required | min:3 | max:50' ,
             'costo' => 'required',
+            'estado' => 'required',
+            'imagen' => 'image|mimes:jpeg,png,jpg,svg'
         ]);
        
       $competencias = new Competencias();
