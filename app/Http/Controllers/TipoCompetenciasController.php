@@ -75,9 +75,12 @@ class TipoCompetenciasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TipoCompetencia $tipoCompetencia)
     {
-        //
+        $tipoCompetencia = TipoCompetencia::findOrFail ($request->id);
+        $tipoCompetencia -> nombre = $request -> nombre;
+        $tipoCompetencia -> save();
+        return $tipoCompetencia;
     }
 
     /**

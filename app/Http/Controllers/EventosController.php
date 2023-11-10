@@ -40,13 +40,13 @@ class EventosController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'nombre' => 'required|min:3|max:30',
+            'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:4|max:300',
             'fechaIni' => 'required',
             'fechaFin' => 'required',
             'requisitos' => 'required',
             'encargado' => 'required|min:3|max:70',
-            'lugar' => 'required|min:3|max:50',
+            'lugar' => 'required|min:3|max:60',
             'estado' => 'required',
             'imagen' => 'image|mimes:jpeg,png,jpg,svg'
         ]);

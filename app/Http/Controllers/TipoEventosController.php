@@ -74,9 +74,12 @@ class TipoEventosController extends Controller
      * @param  \App\Models\Eventos  $eventos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Eventos $tipoEventos)
+    public function update(Request $request, TipoEventos $tipoEventos)
     {
-        //
+        $tipoEventos = TipoEventos::findOrFail ($request->id);
+        $tipoEventos->nombre = $request->nombre;
+        $tipoEventos->save();
+        return $tipoEventos;
     }
 
     /**
