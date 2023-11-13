@@ -146,17 +146,18 @@ class EventosController extends Controller
      
          // Si se proporciona una nueva imagen, actualizarla
          if ($request->hasFile('imagen')) {
-            // Eliminar la imagen anterior si existe
-            if ($eventos->imagen) {
-                $rutaImagenAnterior = str_replace(asset('storage/'), 'public/', $eventos->imagen);
-                Storage::disk('public')->delete($rutaImagenAnterior);
-            }
              $rutaGuardarImg = 'imagen/';
              $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
              Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenEvento);
      
              // Construir la URL completa utilizando asset()
              $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenEvento}");
+     
+             // Eliminar la imagen anterior si existe
+             if ($eventos->imagen) {
+                 $rutaImagenAnterior = str_replace(asset('storage/'), 'public/', $eventos->imagen);
+                 Storage::disk('public')->delete($rutaImagenAnterior);
+             }
      
              // Asignar la URL completa a la propiedad en el modelo
              $eventos->imagen = $urlImagen;
@@ -172,6 +173,7 @@ class EventosController extends Controller
          return $eventos;
      }
      
+
     /**
      * Remove the specified resource from storage.
      *
