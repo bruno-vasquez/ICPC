@@ -51,20 +51,21 @@ class CompetenciasController extends Controller
             'lugar' => 'required | min:3 | max:60' ,
             'costo' => 'required',
             'estado' => 'required',
-            'imagen' => 'image|mimes:jpeg,png,jpg,svg'
         ]);
        
       $competencias = new Competencias();
       $competencias -> nombre = $request -> nombre;
-      $competencias -> descripcion = $request -> descripcion;
-      $competencias -> fechaIni = $request -> fechaIni;
-      $competencias -> fechaFin = $request -> fechaFin;
-      $competencias -> requisitos = $request -> requisitos;
-      $competencias -> encargado = $request -> encargado;
-      $competencias -> email = $request -> email;
-      $competencias -> lugar = $request -> lugar;
-      $competencias -> costo = $request -> costo;
-      $competencias -> estado = $request -> estado;
+        $competencias -> descripcion = $request -> descripcion;
+        $competencias -> fechaIni = $request -> fechaIni;
+        $competencias -> fechaFin = $request -> fechaFin;
+        $competencias -> requisitos = $request -> requisitos;
+        $competencias -> encargado = $request -> encargado;
+        $competencias -> email = $request -> email;
+        $competencias -> lugar = $request -> lugar;
+        $competencias -> costo = $request -> costo;
+        $competencias -> horarios = $request -> horarios;
+        $competencias -> estado = $request -> estado;
+
       
       if ($request->hasFile('imagen')) 
       {
@@ -127,6 +128,10 @@ class CompetenciasController extends Controller
         $competencias -> email = $request -> email;
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
+        $competencias -> horarios = $request -> horarios;
+        $competencias -> estado = $request -> estado;
+
+
         if ($request->hasFile('imagen')) 
         {
             $rutaGuardarImg = 'imagen/';

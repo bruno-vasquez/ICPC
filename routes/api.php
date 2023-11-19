@@ -23,6 +23,7 @@ Route::post('/Eventos','App\Http\Controllers\EventosController@store'); //crear 
 Route::get('/Eventos/{id}','App\Http\Controllers\EventosController@show'); //para mostrarlos los registros
 Route::put('/Eventos/{id}','App\Http\Controllers\EventosController@update'); //actualizar un registro
 Route::delete('/Eventos/{id}','App\Http\Controllers\EventosController@destroy'); //borrar un registro
+Route::match(['post', 'put'], '/Eventos/{id}', 'App\Http\Controllers\EventosController@update');
 
 Route::get('/TipoEventos','App\Http\Controllers\TipoEventosController@index'); //para tener todos los registros y mostrarlos
 Route::post('/TipoEventos','App\Http\Controllers\TipoEventosController@store'); //para tener todos los registros y mostrarlos
@@ -41,3 +42,4 @@ Route::post('/Competencias','App\Http\Controllers\CompetenciasController@store')
 Route::get('/Competencias/{id}','App\Http\Controllers\CompetenciasController@show'); //para mostrarlos los registros
 Route::put('/Competencias/{id}','App\Http\Controllers\CompetenciasController@update'); //actualizar un registro
 Route::delete('/Competencias/{id}','App\Http\Controllers\CompetenciasController@destroy'); //borrar un registro
+Route::match(['post', 'put'], '/Competencias/{id}', 'App\Http\Controllers\CompetenciasController@update');

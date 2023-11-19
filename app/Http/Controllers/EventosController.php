@@ -48,16 +48,18 @@ class EventosController extends Controller
             'encargado' => 'required|min:3|max:70',
             'lugar' => 'required|min:3|max:60',
             'estado' => 'required',
-            'imagen' => 'image|mimes:jpeg,png,jpg,svg'
         ]);
 
         $eventos = new Eventos();
         $eventos->nombre = $request->nombre;
         $eventos->descripcion = $request->descripcion;
+        $eventos->email = $request->email;
         $eventos->fechaIni = $request->fechaIni;
         $eventos->fechaFin = $request->fechaFin;
         $eventos->requisitos = $request->requisitos;
         $eventos->encargado = $request->encargado;
+        $eventos->costo = $request->costo;
+        $eventos->horarios = $request->horarios;
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
 
@@ -118,14 +120,17 @@ class EventosController extends Controller
     public function update(Request $request, Eventos $eventos)
     {
         $eventos = Eventos::findOrFail ($request->id);
-        $eventos -> nombre = $request -> nombre;
-        $eventos -> descripcion = $request -> descripcion;
-        $eventos -> fechaIni = $request -> fechaIni;
-        $eventos -> fechaFin = $request -> fechaFin;
-        $eventos -> requisitos = $request -> requisitos;
-        $eventos -> encargado = $request -> encargado;
-        $eventos -> lugar = $request -> lugar;
-        $eventos -> estado = $request -> estado;
+        $eventos->nombre = $request->nombre;
+        $eventos->descripcion = $request->descripcion;
+        $eventos->email = $request->email;
+        $eventos->fechaIni = $request->fechaIni;
+        $eventos->fechaFin = $request->fechaFin;
+        $eventos->requisitos = $request->requisitos;
+        $eventos->encargado = $request->encargado;
+        $eventos->costo = $request->costo;
+        $eventos->horarios = $request->horarios;
+        $eventos->lugar = $request->lugar;
+        $eventos->estado = $request->estado;
         if ($request->hasFile('imagen')) 
         {
             $rutaGuardarImg = 'imagen/';

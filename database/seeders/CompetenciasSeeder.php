@@ -23,9 +23,10 @@ class CompetenciasSeeder extends Seeder
                         'encargado'=> 'Corina Justina Flores Villarroel',
                         'email'=> 'corinaflores.v@fcyt.umss.edu.bo',
                         'lugar'=> 'MEMI UMSS',
-                        'costo' => 100,
+                        'costo' => '100',
                         'estado' => 'inactivo',
                         'imagen' => null,
+                        'horarios' => '17:00-20:00',
                         'id_tipoCompetencias'=> 1,
                     ],
                 ];

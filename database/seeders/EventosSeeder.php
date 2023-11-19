@@ -24,6 +24,9 @@ class EventosSeeder extends Seeder
                         'lugar'=> 'Infolab',
                         'estado' => 'inactivo',
                         'imagen' => null,
+                        'email' => 'icpc@gmail.com',
+                        'costo' => 'Gratis',
+                        'horarios' => 'Inicia 17:00 termina 20:00',
                         'id_tipoEventos'=> 3,
                     ],    
                 ];

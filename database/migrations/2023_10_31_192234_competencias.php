@@ -23,7 +23,8 @@ class Competencias extends Migration
             $table->string('encargado');
             $table->string('email');
             $table->string('lugar');
-            $table->integer('costo');
+            $table->string('costo');
+            $table->string('horarios')->nullable();
             $table->string('estado');
             $table->string('imagen')->nullable();
             $table->foreignId('id_tipoCompetencias')->unsigned()->references('id')->on('tipo_competencias')->onDelete("cascade");
