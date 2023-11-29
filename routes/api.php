@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminsController;
+use App\Http\Controllers\EventosInteresadosController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,14 +44,17 @@ Route::put('/Competencias/{id}','App\Http\Controllers\CompetenciasController@upd
 Route::delete('/Competencias/{id}','App\Http\Controllers\CompetenciasController@destroy'); //borrar un registro
 Route::match(['post', 'put'], '/Competencias/{id}', 'App\Http\Controllers\CompetenciasController@update');
 
-Route::get('/Usuarios','App\Http\Controllers\UsuariosController@index'); //para tener todos los registros y mostrarlos
-Route::post('/Usuarios','App\Http\Controllers\UsuariosController@store'); //crear un registro
-Route::get('/Usuarios/{id}','App\Http\Controllers\UsuariosController@show'); //para mostrarlos los registros
-Route::put('/Usuarios/{id}','App\Http\Controllers\UsuariosController@update'); //actualizar un registro
-Route::delete('/Usuarios/{id}','App\Http\Controllers\UsuariosController@destroy'); //borrar un registro
+Route::get('/Interesados','App\Http\Controllers\InteresadosController@index'); //para tener todos los registros y mostrarlos
+Route::post('/Interesados','App\Http\Controllers\InteresadosController@store'); //crear un registro
+Route::get('/Interesados/{id}','App\Http\Controllers\InteresadosController@show'); //para mostrarlos los registros
+Route::put('/Interesados/{id}','App\Http\Controllers\InteresadosController@update'); //actualizar un registro
+Route::delete('/Interesados/{id}','App\Http\Controllers\InteresadosController@destroy'); //borrar un registro
 
 Route::post('/Admins/login', [AdminsController::class, 'login']);
 Route::post('/Admins/logout', [AdminsController::class, 'logout']);
 Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para tener todos los registros y mostrarlos
 Route::post('/Admins/register', [AdminsController::class, 'register']);
 
+// Ejemplo en api.php
+Route::post('/eventos/{eventoId}/interesados/{interesadoId}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
+Route::delete('/eventos/{eventoId}/interesados/{interesadoId}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
