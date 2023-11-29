@@ -56,5 +56,5 @@ Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para
 Route::post('/Admins/register', [AdminsController::class, 'register']);
 
 // Ejemplo en api.php
-Route::post('/eventos/{eventoId}/interesados/{interesadoId}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
-Route::delete('/eventos/{eventoId}/interesados/{interesadoId}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
+Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
+Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
