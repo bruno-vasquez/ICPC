@@ -36,9 +36,7 @@ class AdminsController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        info('Credenciales:', $credentials);
-      
+        $credentials = $request->only('email', 'password');      
         if (Auth::attempt($credentials)) 
         {
             info("hola");
