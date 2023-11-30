@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminsController;
 use App\Http\Controllers\EventosInteresadosController;
+use App\Http\Controllers\CompetenciaParticipantesController;
+use App\Http\Controllers\CompetenciaEquiposController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,17 @@ Route::get('/Interesados/{id}','App\Http\Controllers\InteresadosController@show'
 Route::put('/Interesados/{id}','App\Http\Controllers\InteresadosController@update'); //actualizar un registro
 Route::delete('/Interesados/{id}','App\Http\Controllers\InteresadosController@destroy'); //borrar un registro
 
+Route::get('/Participantes','App\Http\Controllers\ParticipantesController@index'); //para tener todos los registros y mostrarlos
+Route::post('/Participantes','App\Http\Controllers\ParticipantesController@store'); //crear un registro
+Route::get('/Participantes/{id}','App\Http\Controllers\ParticipantesController@show'); //para mostrarlos los registros
+Route::put('/Participantes/{id}','App\Http\Controllers\ParticipantesController@update'); //actualizar un registro
+Route::delete('/Participantes/{id}','App\Http\Controllers\ParticipantesController@destroy'); //borrar un registro
+
+Route::get('/Equipos','App\Http\Controllers\EquiposController@index'); //para tener todos los registros y mostrarlos
+Route::delete('/Equipos/{id}','App\Http\Controllers\EquiposController@destroy'); //borrar un registro
+Route::post('/Equipos','App\Http\Controllers\EquiposController@store'); //crear un registro
+Route::get('/Equipos/{id}','App\Http\Controllers\EquiposController@show'); //para mostrarlos los registros
+
 Route::post('/Admins/login', [AdminsController::class, 'login']);
 Route::post('/Admins/logout', [AdminsController::class, 'logout']);
 Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para tener todos los registros y mostrarlos
@@ -58,3 +71,17 @@ Route::post('/Admins/register', [AdminsController::class, 'register']);
 // Ejemplo en api.php
 Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
 Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
+Route::get('/Eventos/{evento_id}/Interesados', [EventosInteresadosController::class, 'getInteresadosForEvento']);
+
+
+Route::post('/Competencias/{competencia_Id}/Participantes/{participante_Id}', [CompetenciaParticipantesController::class, 'addParticipanteToCompetencia']);
+Route::delete('/Competencias/{competencia_Id}/Participantes/{participante_Id}', [CompetenciaParticipantesController::class, 'removeParticipanteFromCompetencia']);
+Route::get('/Competencias/{competencia_id}/Participantes', [CompetenciaParticipantesController::class, 'getParticipantesForCompetencia']);
+
+Route::post('/Competencias/{competencia_Id}/Equipos/{equipo_Id}', [CompetenciaEquiposController::class, 'addEquipoToCompetencia']);
+Route::delete('/Competencias/{competencia_Id}/Equipos/{equipo_Id}', [CompetenciaEquiposController::class, 'removeEquipoFromCompetencia']);
+Route::get('/Competencias/{competencia_id}/Equipos', [CompetenciaEquiposController::class, 'getEquiposForCompetencia']);
+
+
+
+

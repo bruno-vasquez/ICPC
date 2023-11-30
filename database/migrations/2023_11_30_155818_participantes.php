@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Interesados extends Migration
+class Participantes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Interesados extends Migration
      */
     public function up()
     {
-        Schema::create('interesados', function (Blueprint $table) {
+        Schema::create('participantes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->string('apellidos');
@@ -35,6 +35,6 @@ class Interesados extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('interesados');
+        Schema::dropIfExists('participantes');
     }
 }

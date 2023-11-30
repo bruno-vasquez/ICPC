@@ -9,6 +9,7 @@ use App\Models\Interesados;
 use Illuminate\Support\Facades\DB;
 
 
+
 class EventosInteresadosController extends Controller
 {
     public function addInteresadoToEvento($evento_id, $interesado_id)
@@ -18,7 +19,6 @@ class EventosInteresadosController extends Controller
         
         if ($eventos && $interesados) 
         {
-            info("hola");
             $eventos->interesados()->attach($interesados->id);
             return response()->json(['message' => 'Usuario añadido a la competencia']);
         }
@@ -36,6 +36,29 @@ class EventosInteresadosController extends Controller
             return response()->json(['message' => 'Usuario eliminado de la competencia']);
         }
         return response()->json(['error' => 'No se pudo encontrar la competencia o el usuario'], 404);
+    }
+/*
+    public function getEventoWithInteresados($evento_id)
+    {
+        $eventos = Eventos::with('interesados')->find($evento_id);
+
+        if ($eventos) {
+            return response()->json(['eventos' => $eventos]);
+        }
+
+        return response()->json(['error' => 'No se pudo encontrar el evento'], 404);
+    }
+    */
+    public function getInteresadosForEvento($evento_id)
+    {
+        $eventos = Eventos::with('interesados')->find($evento_id);
+
+        if ($eventos) {
+            $interesados = $eventos->interesados;
+            return response()->json(['interesados' => $interesados]);
+        }
+
+        return response()->json(['error' => 'No se pudo encontrar el evento'], 404);
     }
 }
 

@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class InteresadosSeeder extends Seeder
+class ParticipantesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,17 +14,6 @@ class InteresadosSeeder extends Seeder
     public function run()
     {
         $data = [
-            [
-                'nombre' => 'Joel',
-                'apellidos'=> ' Gonzales',
-                'ci'=> 3521351,
-                'fecha_Nacimiento'=> '2001-07-21',
-                'telefono'=> 60747804,
-                'email' => 'brunojoel444@gmail.com',
-                'carrera' => 'Ingenieria de sistemas',
-                'semestre' => '8',
-                'codSIS'=> 42,
-            ],    
                     [
                         'nombre' => 'Bruno',
                         'apellidos'=> 'Vasquez Gonzales',
@@ -37,6 +26,6 @@ class InteresadosSeeder extends Seeder
                         'codSIS'=> 202000737,
                     ],    
                 ];
-                \DB::table('interesados')->insert($data);  
+                \DB::table('participantes')->insert($data);  
     }
 }

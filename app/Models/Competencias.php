@@ -14,4 +14,12 @@ class Competencias extends Model
     { 
         return $this->belongsTo(TipoCompetencias::class, 'id_tipoCompetencias');
     }
+    public function participantes()
+    {
+        return $this->belongsToMany(Participantes::class, 'competencia_participantes', 'competencia_id', 'participante_id');
+    } 
+    public function equipos()
+    {
+        return $this->belongsToMany(Equipos::class, 'competencia_equipos', 'competencia_id', 'equipos_id');
+    } 
 }
