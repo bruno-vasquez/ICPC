@@ -55,7 +55,7 @@ class EventosInteresadosController extends Controller
 
         if ($eventos) {
             $interesados = $eventos->interesados;
-            return response()->json(['interesados' => $interesados]);
+            return $interesados;
         }
 
         return response()->json(['error' => 'No se pudo encontrar el evento'], 404);

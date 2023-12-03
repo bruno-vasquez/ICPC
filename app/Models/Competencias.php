@@ -20,6 +20,6 @@ class Competencias extends Model
     } 
     public function equipos()
     {
-        return $this->belongsToMany(Equipos::class, 'competencia_equipos', 'competencia_id', 'equipos_id');
+        return $this->belongsToMany(Equipos::class, 'competencia_equipos', 'competencia_id', 'equipo_id');
     } 
 }

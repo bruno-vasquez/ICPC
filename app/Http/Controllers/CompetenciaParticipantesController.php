@@ -42,7 +42,7 @@ class CompetenciaParticipantesController extends Controller
 
         if ($competencias) {
             $participantes = $competencias->participantes;
-            return response()->json(['participantes' => $participantes]);
+            return $participantes;
         }
 
         return response()->json(['error' => 'No se pudo encontrar el Competencia'], 404);
