@@ -68,11 +68,9 @@ Route::post('/Admins/logout', [AdminsController::class, 'logout']);
 Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para tener todos los registros y mostrarlos
 Route::post('/Admins/register', [AdminsController::class, 'register']);
 
-// Ejemplo en api.php
 Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
 Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
 Route::get('/Eventos/{evento_id}/Interesados', [EventosInteresadosController::class, 'getInteresadosForEvento']);
-
 
 Route::post('/Competencias/{competencia_Id}/Participantes/{participante_Id}', [CompetenciaParticipantesController::class, 'addParticipanteToCompetencia']);
 Route::delete('/Competencias/{competencia_Id}/Participantes/{participante_Id}', [CompetenciaParticipantesController::class, 'removeParticipanteFromCompetencia']);

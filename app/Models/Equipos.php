@@ -10,7 +10,7 @@ class Equipos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombreLider', 'edadLider', 'carreraLider', 'codSISLider', 'emailLider', 'numeroLider', 'universidadLider', 'semestreLider',
+        'nombreEquipo','nombreCoach', 'edadCoach', 'carreraCoach', 'codSISCoach', 'emailCoach', 'numeroCoach', 'universidadCoach', 'semestreCoach',
         'nombre1', 'edad1', 'carrera1', 'codSIS1', 'universidad1',
         'nombre2', 'edad2', 'carrera2', 'codSIS2', 'universidad2',
         'nombre3', 'edad3', 'carrera3', 'codSIS3', 'universidad3',

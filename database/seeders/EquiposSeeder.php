@@ -15,14 +15,16 @@ class EquiposSeeder extends Seeder
     public function run()
     {
         DB::table('equipos')->insert([
-            'nombreLider' => 'NombreLider1',
-            'edadLider' => 25,
-            'carreraLider' => 'CarreraLider1',
-            'codSISLider' => 12345,
-            'emailLider' => 'lider1@example.com',
-            'numeroLider' => 123456789,
-            'universidadLider' => 'UniversidadLider1',
-            'semestreLider' => 5,
+            'nombreEquipo' => 'Dinamita',
+
+            'nombreCoach' => 'NombreCoach1',
+            'edadCoach' => 25,
+            'carreraCoach' => 'CarreraCoach1',
+            'codSISCoach' => 12345,
+            'emailCoach' => 'Coach1@example.com',
+            'numeroCoach' => 123456789,
+            'universidadCoach' => 'UniversidadCoach1',
+            'semestreCoach' => 5,
 
             'nombre1' => 'Nombre1',
             'edad1' => 22,
@@ -33,7 +35,7 @@ class EquiposSeeder extends Seeder
             'nombre2' => 'Nombre2',
             'edad2' => 23,
             'carrera2' => 'Carrera2',
-            'codSIS2' => 202000737, // Puedes ajustar esto según tus necesidades
+            'codSIS2' => 202000737, 
             'universidad2' => 'Universidad2',
 
             'nombre3' => null,

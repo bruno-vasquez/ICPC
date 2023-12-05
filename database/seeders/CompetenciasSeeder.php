@@ -25,6 +25,7 @@ class CompetenciasSeeder extends Seeder
                         'lugar'=> 'MEMI UMSS',
                         'costo' => '100',
                         'estado' => 'inactivo',
+                        'umss' => 'si',
                         'imagen' => null,
                         'horarios' => '17:00-20:00',
                         'id_tipoCompetencias'=> 1,

@@ -26,6 +26,7 @@ class EventosSeeder extends Seeder
                         'imagen' => null,
                         'email' => 'icpc@gmail.com',
                         'costo' => 'Gratis',
+                        'umss' => 'si',
                         'horarios' => 'Inicia 17:00 termina 20:00',
                         'id_tipoEventos'=> 3,
                     ],    

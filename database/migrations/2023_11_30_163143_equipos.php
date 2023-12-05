@@ -15,14 +15,16 @@ class Equipos extends Migration
     {
         Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombreLider');
-            $table->integer('edadLider');
-            $table->string('carreraLider');
-            $table->integer('codSISLider')->nullable();
-            $table->string('emailLider');
-            $table->integer('numeroLider');
-            $table->string('universidadLider');
-            $table->integer('semestreLider');
+            $table->string('nombreEquipo');
+
+            $table->string('nombreCoach');
+            $table->integer('edadCoach');
+            $table->string('carreraCoach');
+            $table->integer('codSISCoach')->nullable();
+            $table->string('emailCoach');
+            $table->integer('numeroCoach');
+            $table->string('universidadCoach');
+            $table->integer('semestreCoach');
 
             $table->string('nombre1');
             $table->integer('edad1');

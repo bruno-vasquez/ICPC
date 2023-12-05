@@ -18,15 +18,16 @@ class EquiposController extends Controller
     public function store(Request $request)
     {
     $equipos = new Equipos();
+    $equipos->nombreEquipo = $request->nombreEquipo;
 
-    $equipos->nombreLider = $request->nombreLider;
-    $equipos->edadLider = $request->edadLider;
-    $equipos->carreraLider = $request->carreraLider;
-    $equipos->codSISLider = $request->codSISLider;
-    $equipos->emailLider = $request->emailLider;
-    $equipos->numeroLider = $request->numeroLider;
-    $equipos->universidadLider = $request->universidadLider;
-    $equipos->semestreLider = $request->semestreLider;
+    $equipos->nombreCoach = $request->nombreCoach;
+    $equipos->edadCoach = $request->edadCoach;
+    $equipos->carreraCoach = $request->carreraCoach;
+    $equipos->codSISCoach = $request->codSISCoach;
+    $equipos->emailCoach = $request->emailCoach;
+    $equipos->numeroCoach = $request->numeroCoach;
+    $equipos->universidadCoach = $request->universidadCoach;
+    $equipos->semestreCoach = $request->semestreCoach;
 
     $equipos->nombre1 = $request->nombre1;
     $equipos->edad1 = $request->edad1;

@@ -9,7 +9,7 @@ class Eventos extends Model
 {
     use HasFactory;
     protected $fillable = ['nombre','descripcion','email','fechaIni', 'fechaFin','requisitos', 
-                            'encargado', 'lugar','estado','costo','horarios','imagen']; //añadir imagen
+                            'encargado', 'lugar','estado','costo','umss','horarios','imagen']; //añadir imagen
 
     public function tipoEventos()
     { 

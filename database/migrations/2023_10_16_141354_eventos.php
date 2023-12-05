@@ -24,6 +24,7 @@ class Eventos extends Migration
             $table->string('encargado');
             $table->string('lugar');
             $table->string('estado');
+            $table->string('umss');
             $table->string('costo');
             $table->string('horarios')->nullable();
             $table->string('imagen')-> nullable();

@@ -62,6 +62,7 @@ class EventosController extends Controller
         $eventos->horarios = $request->horarios;
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
+        $eventos->umss = $request->umss;
 
         // Verificar si se proporcionó una imagen
         if ($request->hasFile('imagen')) {
@@ -131,6 +132,8 @@ class EventosController extends Controller
         $eventos->horarios = $request->horarios;
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
+        $eventos->umss = $request->umss;
+
         if ($request->hasFile('imagen')) 
         {
             $rutaGuardarImg = 'imagen/';

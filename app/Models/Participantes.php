@@ -12,6 +12,6 @@ class Participantes extends Model
                             'email', 'carrera','codSIS']; 
     public function competencias()
     {
-        return $this->belongsToMany(Competencias::class, 'competencia_participantes', 'competencia_id','participante_id');
+        return $this->belongsToMany(Competencias::class, 'competencia_participantes', 'competencia_individual_ganadores','competencia_id','participante_id');
     }
 }

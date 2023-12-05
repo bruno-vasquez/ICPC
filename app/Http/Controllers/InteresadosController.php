@@ -87,7 +87,6 @@ class InteresadosController extends Controller
     public function update(Request $request, Interesados $interesados)
     {
         $interesados = Interesados::findOrFail ($request->id);
-        $interesados = new Interesados ();
         $interesados->nombre = $request->nombre;
         $interesados->apellidos = $request->apellidos;
         $interesados->semestre = $request->semestre;
