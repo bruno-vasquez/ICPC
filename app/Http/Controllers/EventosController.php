@@ -164,4 +164,12 @@ class EventosController extends Controller
         $eventos = Eventos::destroy($id);
         return $eventos;
     }
+    public function obtenerEventosEnRangoDeFechas($fechaInicio, $fechaFin)
+    {
+        $eventos = Eventos::whereBetween('fechaIni', [$fechaInicio, $fechaFin])
+                        ->orWhereBetween('fechaFin', [$fechaInicio, $fechaFin])
+                        ->get();
+
+        return $eventos;
+    }
 }

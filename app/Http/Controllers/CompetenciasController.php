@@ -163,4 +163,12 @@ class CompetenciasController extends Controller
         $competencias = Competencias::destroy($id);
         return $competencias;
     }
+    public function obtenerCompetenciasEnRangoDeFechas($fechaInicio, $fechaFin)
+    {
+        $competencias = Competencias::whereBetween('fechaIni', [$fechaInicio, $fechaFin])
+                        ->orWhereBetween('fechaFin', [$fechaInicio, $fechaFin])
+                        ->get();
+
+        return $competencias;
+    }
 }

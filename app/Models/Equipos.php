@@ -23,4 +23,8 @@ class Equipos extends Model
         return $this->belongsToMany(Competencias::class, 'competencia_equipos', 'competencia_id','equipo_id');
     }
     // Puedes agregar relaciones o métodos adicionales aquí según tus necesidades
+    public function ganadoresEquipos()
+    {
+        return $this->belongsToMany(Competencia::class, 'comp_equipos_ganadores', 'competencia_id', 'equipo_id');
+    }
 }

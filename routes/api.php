@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\AdminsController;
 use App\Http\Controllers\EventosInteresadosController;
 use App\Http\Controllers\CompetenciaParticipantesController;
 use App\Http\Controllers\CompetenciaEquiposController;
+use App\Http\Controllers\GanadoresIndividualesController;
+use App\Http\Controllers\GanadoresEquiposController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,16 @@ Route::post('/Competencias/{competencia_Id}/Equipos/{equipo_Id}', [CompetenciaEq
 Route::delete('/Competencias/{competencia_Id}/Equipos/{equipo_Id}', [CompetenciaEquiposController::class, 'removeEquipoFromCompetencia']);
 Route::get('/Competencias/{competencia_id}/Equipos', [CompetenciaEquiposController::class, 'getEquiposForCompetencia']);
 
+//ganadores
+Route::post('/Competencias/{competencia_Id}/Participantes/{participante_Id1}/Participantes/{participante_Id2}/Participantes/{participante_Id3}', [GanadoresIndividualesController::class, 'addParticipanteToCompetencia']);
+Route::post('/Competencias/{competencia_Id}/GanadorIndividual/{ganador_Id}', [GanadoresIndividualesController::class, 'addGanadorToCompetencia']);
+Route::get('/Competencias/{competencia_id}/GanadoresIndividuales', [GanadoresIndividualesController::class, 'getGanadoresForCompetencia']);
 
+Route::post('/Competencias/{competencia_Id}/GanadorEquipo/{ganador_Id}', [GanadoresEquiposController::class, 'addGanadorToCompetencia']);
+Route::get('/Competencias/{competencia_id}/GanadoresEquipos', [GanadoresEquiposController::class, 'getGanadoresForCompetencia']);
+
+//Fechas
+Route::get('/eventosRango/{fechaInicio}/{fechaFin}', [EventosController::class, 'obtenerEventosEnRangoDeFechas']);
+Route::get('/competenciasRango/{fechaInicio}/{fechaFin}', [CompetenciasController::class, 'obtenerCompetenciasEnRangoDeFechas']);
 
 

@@ -16,11 +16,19 @@ class Competencias extends Model
     }
     public function participantes()
     {
-        return $this->belongsToMany(Participantes::class, 'competencia_participantes', 'competencia_individual_ganadores' ,'competencia_id', 'participante_id');
+        return $this->belongsToMany(Participantes::class, 'competencia_participantes' ,'competencia_id', 'participante_id');
     } 
     public function equipos()
     {
         return $this->belongsToMany(Equipos::class, 'competencia_equipos', 'competencia_id', 'equipo_id');
     } 
-    
+    public function ganadoresIndividual()
+    {
+        return $this->belongsToMany(Participantes::class, 'comp_individual_ganadores', 'competencia_id', 'participante_id');
+        //return $this->belongsToMany(Participantes::class, 'comp_individual_ganadores', 'competencia_id', 'participante_id1')->withPivot('participante_id1', 'participante_id2', 'participante_id3');
+    }
+    public function ganadoresEquipos()
+    {
+        return $this->belongsToMany(Equipos::class, 'comp_equipos_ganadores', 'competencia_id', 'equipo_id');
+    }
 }
