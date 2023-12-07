@@ -38,6 +38,15 @@ class InteresadosController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'nombre' => 'required | min:3 | max:30' ,
+            'apellidos' => 'required | min:3 | max:30' ,
+            'fecha_Nacimiento' => 'required' ,
+            'ci' => 'required' ,
+            'telefono' => 'required | max:8' ,
+            'email' => 'required' ,
+            'carrera' => 'min:3 | max:20',
+        ]);
         $interesados = new Interesados ();
         $interesados->nombre = $request->nombre;
         $interesados->apellidos = $request->apellidos;
@@ -85,7 +94,16 @@ class InteresadosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Interesados $interesados)
-    {
+    { 
+        $validation = $request->validate([
+            'nombre' => 'required | min:3 | max:30' ,
+            'apellidos' => 'required | min:3 | max:30' ,
+            'fecha_Nacimiento' => 'required' ,
+            'ci' => 'required' ,
+            'telefono' => 'required | max:8' ,
+            'email' => 'required' ,
+            'carrera' => 'min:3 | max:20',
+        ]);
         $interesados = Interesados::findOrFail ($request->id);
         $interesados->nombre = $request->nombre;
         $interesados->apellidos = $request->apellidos;

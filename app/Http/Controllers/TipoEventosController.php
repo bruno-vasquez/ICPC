@@ -37,7 +37,7 @@ class TipoEventosController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoEventos = new TipoEventos ();
+        $tipoEventos = new TipoEventos();
         $tipoEventos -> nombre = $request -> nombre;
 
         $tipoEventos -> save();

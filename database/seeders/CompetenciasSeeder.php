@@ -27,6 +27,7 @@ class CompetenciasSeeder extends Seeder
                         'estado' => 'inactivo',
                         'umss' => 'si',
                         'imagen' => null,
+                        'reporte' => 'Siuuuuuuuuuuuuuuuuuuuu',
                         'horarios' => '17:00-20:00',
                         'id_tipoCompetencias'=> 1,
                     ],

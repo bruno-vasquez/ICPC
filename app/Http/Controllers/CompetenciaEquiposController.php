@@ -47,5 +47,24 @@ class CompetenciaEquiposController extends Controller
 
         return response()->json(['error' => 'No se pudo encontrar el Competencia'], 404);
     }
+    public function getEmailsEquipos($competencia_id)
+    {
+        // Obtener el competencia con los participantes relacionados
+        $competencias = Competencias::with('equipos')->find($competencia_id);
+
+        // Verificar si el competencia existe
+        if ($competencias) 
+        {
+            // Obtener la colección de participantes
+            $equipos = $competencias->equipos;
+
+            // Obtener los correos electrónicos de los participantes
+            $emails = $equipos->pluck('emailCoach');
+
+            return $emails;
+        }
+        // Si el competencia no se encuentra, devolver un error
+        return response()->json(['error' => 'No se pudo encontrar el competencia'], 404);
+    }  
 }
 

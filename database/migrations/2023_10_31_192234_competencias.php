@@ -27,6 +27,7 @@ class Competencias extends Migration
             $table->string('horarios')->nullable();
             $table->string('estado');
             $table->string('umss');
+            $table->string('reporte')->nullable();
             $table->string('imagen')->nullable();
             $table->foreignId('id_tipoCompetencias')->unsigned()->references('id')->on('tipo_competencias')->onDelete("cascade");
             $table->timestamps();

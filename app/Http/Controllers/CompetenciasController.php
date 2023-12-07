@@ -65,7 +65,8 @@ class CompetenciasController extends Controller
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
-        $eventos->umss = $request->umss;
+        $competencias -> umss = $request->umss;
+        $competencias -> reporte = $request->reporte;
 
       
       if ($request->hasFile('imagen')) 
@@ -119,6 +120,19 @@ class CompetenciasController extends Controller
      */
     public function update(Request $request, Competencias $competencias)
     {
+        $validation = $request->validate([
+
+            'nombre' => 'required | min:3 | max:50' ,
+            'descripcion' => 'required | min:4 | max:400' ,
+            'fechaIni' => 'required' ,
+            'fechaFin' => 'required' ,
+            'requisitos' => 'required' ,
+            'encargado' => 'required | min:3 | max:70' ,
+            'email' => 'required' ,
+            'lugar' => 'required | min:3 | max:60' ,
+            'costo' => 'required',
+            'estado' => 'required',
+        ]);
         $competencias = Competencias::findOrFail ($request->id);
         $competencias -> nombre = $request -> nombre;
         $competencias -> descripcion = $request -> descripcion;
@@ -131,8 +145,8 @@ class CompetenciasController extends Controller
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
-        $eventos->umss = $request->umss;
-
+        $competencias->umss = $request->umss;
+        $competencias -> reporte = $request->reporte;
 
         if ($request->hasFile('imagen')) 
         {

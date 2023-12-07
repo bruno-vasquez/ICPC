@@ -21,7 +21,7 @@ class EquiposSeeder extends Seeder
             'edadCoach' => 25,
             'carreraCoach' => 'CarreraCoach1',
             'codSISCoach' => 12345,
-            'emailCoach' => 'Coach1@example.com',
+            'emailCoach' => 'brunojoel444@gmail.com',
             'numeroCoach' => 123456789,
             'universidadCoach' => 'UniversidadCoach1',
             'semestreCoach' => 5,
@@ -55,9 +55,6 @@ class EquiposSeeder extends Seeder
             'carrera5' => null,
             'codSIS5' => null,
             'universidad5' => null,
-
-         
-
         ]);
     }
 }

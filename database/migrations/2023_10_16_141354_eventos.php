@@ -27,6 +27,7 @@ class Eventos extends Migration
             $table->string('umss');
             $table->string('costo');
             $table->string('horarios')->nullable();
+            $table->string('reporte')->nullable();
             $table->string('imagen')-> nullable();
             $table->foreignId('id_tipoEventos')->unsigned()->references('id')->on('tipo_eventos')->onDelete("cascade");
             $table->timestamps();

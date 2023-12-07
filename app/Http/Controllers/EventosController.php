@@ -63,6 +63,7 @@ class EventosController extends Controller
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
         $eventos->umss = $request->umss;
+        $eventos->reporte = $request->reporte;
 
         // Verificar si se proporcionó una imagen
         if ($request->hasFile('imagen')) {
@@ -120,6 +121,16 @@ class EventosController extends Controller
      */
     public function update(Request $request, Eventos $eventos)
     {
+        $validation = $request->validate([
+            'nombre' => 'required|min:3|max:50',
+            'descripcion' => 'required|min:4|max:300',
+            'fechaIni' => 'required',
+            'fechaFin' => 'required',
+            'requisitos' => 'required',
+            'encargado' => 'required|min:3|max:70',
+            'lugar' => 'required|min:3|max:60',
+            'estado' => 'required',
+        ]);
         $eventos = Eventos::findOrFail ($request->id);
         $eventos->nombre = $request->nombre;
         $eventos->descripcion = $request->descripcion;
@@ -133,6 +144,7 @@ class EventosController extends Controller
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
         $eventos->umss = $request->umss;
+        $eventos->reporte = $request->reporte;
 
         if ($request->hasFile('imagen')) 
         {

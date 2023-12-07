@@ -9,7 +9,7 @@ class Competencias extends Model
 {
     use HasFactory;
     protected $fillable = ['nombre','descripcion','fechaIni', 'fechaFin','requisitos', 
-                            'encargado', 'email', 'lugar', 'costo','estado','umss','horarios','imagen'];
+                            'encargado', 'email', 'lugar', 'costo','estado','umss','horarios','imagen','reporte'];
     public function tipoCompetencias()
     { 
         return $this->belongsTo(TipoCompetencias::class, 'id_tipoCompetencias');

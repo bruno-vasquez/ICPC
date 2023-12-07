@@ -38,6 +38,15 @@ class ParticipantesController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'nombre' => 'required | min:3 | max:30' ,
+            'apellidos' => 'required | min:3 | max:30' ,
+            'fecha_Nacimiento' => 'required' ,
+            'ci' => 'required' ,
+            'telefono' => 'required | max:8' ,
+            'email' => 'required' ,
+            'carrera' => 'min:3 | max:20',
+        ]);
         $participantes = new Participantes ();
         $participantes->nombre = $request->nombre;
         $participantes->apellidos = $request->apellidos;
@@ -86,6 +95,15 @@ class ParticipantesController extends Controller
      */
     public function update(Request $request, Participantes $participantes)
     {
+        $validation = $request->validate([
+            'nombre' => 'required | min:3 | max:30' ,
+            'apellidos' => 'required | min:3 | max:30' ,
+            'fecha_Nacimiento' => 'required' ,
+            'ci' => 'required' ,
+            'telefono' => 'required | max:8' ,
+            'email' => 'required' ,
+            'carrera' => 'min:3 | max:20',
+        ]);
         $participantes = Participantes::findOrFail ($request->id);
         $participantes = new Participantes ();
         $participantes->nombre = $request->nombre;

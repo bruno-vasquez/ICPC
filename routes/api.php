@@ -8,6 +8,10 @@ use App\Http\Controllers\CompetenciaParticipantesController;
 use App\Http\Controllers\CompetenciaEquiposController;
 use App\Http\Controllers\GanadoresIndividualesController;
 use App\Http\Controllers\GanadoresEquiposController;
+use App\Http\Controllers\CorreoController;
+use App\Mail\Reportes;
+use Illuminate\Support\Facades\Mail;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +87,6 @@ Route::delete('/Competencias/{competencia_Id}/Equipos/{equipo_Id}', [Competencia
 Route::get('/Competencias/{competencia_id}/Equipos', [CompetenciaEquiposController::class, 'getEquiposForCompetencia']);
 
 //ganadores
-Route::post('/Competencias/{competencia_Id}/Participantes/{participante_Id1}/Participantes/{participante_Id2}/Participantes/{participante_Id3}', [GanadoresIndividualesController::class, 'addParticipanteToCompetencia']);
 Route::post('/Competencias/{competencia_Id}/GanadorIndividual/{ganador_Id}', [GanadoresIndividualesController::class, 'addGanadorToCompetencia']);
 Route::get('/Competencias/{competencia_id}/GanadoresIndividuales', [GanadoresIndividualesController::class, 'getGanadoresForCompetencia']);
 
@@ -93,5 +96,10 @@ Route::get('/Competencias/{competencia_id}/GanadoresEquipos', [GanadoresEquiposC
 //Fechas
 Route::get('/eventosRango/{fechaInicio}/{fechaFin}', [EventosController::class, 'obtenerEventosEnRangoDeFechas']);
 Route::get('/competenciasRango/{fechaInicio}/{fechaFin}', [CompetenciasController::class, 'obtenerCompetenciasEnRangoDeFechas']);
+
+//Correos
+Route::post('/enviar-correoEventos/{evento_id}', [CorreoController::class, 'enviarCorreoEventos']);
+Route::post('/enviar-correoCompetenciasIndi/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasIndi']);
+Route::post('/enviar-correoCompetenciasGru/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasGru']);
 
 
