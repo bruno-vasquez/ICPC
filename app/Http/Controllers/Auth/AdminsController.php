@@ -53,4 +53,20 @@ class AdminsController extends Controller
         Auth::logout();
         return response()->json(['message' => 'Logout exitoso'], 200);
     }
+
+    public function deleteAdmin($id)
+    {
+        // Encuentra al administrador por su ID
+        $admin = Admins::find($id);
+    
+        // Verifica si el administrador existe
+        if (!$admin) {
+            return response()->json(['message' => 'Administrador no encontrado'], 404);
+        }
+    
+        // Elimina al administrador
+        $admin->delete();
+    
+        return response()->json(['message' => 'Administrador eliminado exitosamente'], 200);
+    }
 }

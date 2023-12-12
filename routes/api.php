@@ -70,10 +70,13 @@ Route::delete('/Equipos/{id}','App\Http\Controllers\EquiposController@destroy');
 Route::post('/Equipos','App\Http\Controllers\EquiposController@store'); //crear un registro
 Route::get('/Equipos/{id}','App\Http\Controllers\EquiposController@show'); //para mostrarlos los registros
 
+//admins
 Route::post('/Admins/login', [AdminsController::class, 'login']);
 Route::post('/Admins/logout', [AdminsController::class, 'logout']);
 Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para tener todos los registros y mostrarlos
 Route::post('/Admins/register', [AdminsController::class, 'register']);
+Route::delete('Admins/{id}', [AdminsController::class, 'deleteAdmin']);
+
 
 Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
 Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);

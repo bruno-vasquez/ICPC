@@ -125,6 +125,7 @@ class EventosController extends Controller
             'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:4|max:300',
             'fechaIni' => 'required',
+            'email' => 'required',
             'fechaFin' => 'required',
             'requisitos' => 'required',
             'encargado' => 'required|min:3|max:70',

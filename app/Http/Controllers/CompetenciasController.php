@@ -66,6 +66,7 @@ class CompetenciasController extends Controller
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
         $competencias -> umss = $request->umss;
+        $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
         $competencias -> reporte = $request->reporte;
 
       
@@ -145,7 +146,8 @@ class CompetenciasController extends Controller
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
-        $competencias->umss = $request->umss;
+        $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
+        $competencias -> umss = $request->umss;
         $competencias -> reporte = $request->reporte;
 
         if ($request->hasFile('imagen')) 
