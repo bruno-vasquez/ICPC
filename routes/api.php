@@ -9,6 +9,7 @@ use App\Http\Controllers\CompetenciaEquiposController;
 use App\Http\Controllers\GanadoresIndividualesController;
 use App\Http\Controllers\GanadoresEquiposController;
 use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\PtoController;
 use App\Mail\Reportes;
 use Illuminate\Support\Facades\Mail;
 
@@ -102,4 +103,7 @@ Route::post('/enviar-correoEventos/{evento_id}', [CorreoController::class, 'envi
 Route::post('/enviar-correoCompetenciasIndi/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasIndi']);
 Route::post('/enviar-correoCompetenciasGru/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasGru']);
 
-
+//pto
+Route::get('/Pto','App\Http\Controllers\PtoController@index'); //para tener todos los registros y mostrarlos
+Route::post('/Pto','App\Http\Controllers\PtoController@store'); //crear un registro
+Route::delete('/Pto/{id}','App\Http\Controllers\PtoController@destroy'); //borrar un registro
