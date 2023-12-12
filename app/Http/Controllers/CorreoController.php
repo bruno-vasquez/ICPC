@@ -21,12 +21,15 @@ class CorreoController extends Controller
         $emailsInteresados = $eventosInteresadosController->getEmailsInteresados($evento_id);
         // Personaliza el contenido del mensaje según tus necesidades
         $contenidoMensaje = $eventos->reporte;
+        $nombre = $eventos->nombre;
+        info($nombre);
 
         // Envía el correo a múltiples destinatarios
         Mail::to($emailsInteresados)
-        ->send(new Reportes($contenidoMensaje));
+        ->send(new Reportes($contenidoMensaje, $nombre, ['subject' => 'Nombre del Evento: ' . $nombre]));
         return "Correo enviado a múltiples destinatarios";
     }
+    
     public function enviarCorreoCompetenciasIndi($competencia_id)
     {
         $competencia = Competencias::find($competencia_id);
@@ -34,10 +37,11 @@ class CorreoController extends Controller
         $emailsParticipantes = $competenciaParticipantes->getEmailsParticipantes($competencia_id);
         // Personaliza el contenido del mensaje según tus necesidades
         $contenidoMensaje = $competencia->reporte;
+        $nombre = $competencia->nombre;
 
         // Envía el correo a múltiples destinatarios
         Mail::to($emailsParticipantes)
-        ->send(new Reportes($contenidoMensaje));
+        ->send(new Reportes($contenidoMensaje, $nombre, ['subject' => 'Nombre de la Competencia: ' . $nombre]));
         return "Correo enviado a múltiples destinatarios";
     }
     public function enviarCorreoCompetenciasGru($competencia_id)
@@ -47,10 +51,11 @@ class CorreoController extends Controller
         $emailsEquipos = $competenciaEquipos->getEmailsEquipos($competencia_id);
         // Personaliza el contenido del mensaje según tus necesidades
         $contenidoMensaje = $competencia->reporte;
-
+        $nombre = $competencia->nombre;
+        
         // Envía el correo a múltiples destinatarios
         Mail::to($emailsEquipos)
-        ->send(new Reportes($contenidoMensaje));
+        ->send(new Reportes($contenidoMensaje, $nombre, ['subject' => 'Nombre de la Competencia: ' . $nombre]));
         return "Correo enviado a múltiples destinatarios";
     }
 }
