@@ -18,6 +18,7 @@ class PtoController extends Controller
         $ptos->name = $request->name;
         $ptos->type = $request->type;
         $ptos->subject = $request->subject;
+        $ptos->estado = $request->estado;
         $ptos->date_start = $request->date_start;
         $ptos->date_end = $request->date_end;
         $ptos->save();

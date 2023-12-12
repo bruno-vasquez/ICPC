@@ -18,6 +18,7 @@ class Ptos extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('subject');
+            $table->string('estado');
             $table->date('date_start');
             $table->date('date_end');
             $table->timestamps();

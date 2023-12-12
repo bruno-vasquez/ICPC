@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pto extends Model
 {
-    protected $fillable = ['name', 'type', 'subject', 'date_start', 'date_end'];
+    protected $fillable = ['name', 'type', 'subject', 'estado', 'date_start', 'date_end'];
 }
