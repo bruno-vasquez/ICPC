@@ -1,5 +1,4 @@
-// app/Http/Controllers/PtoController.php
-
+<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -19,8 +18,8 @@ class PtoController extends Controller
         $ptos->name = $request->name;
         $ptos->type = $request->type;
         $ptos->subject = $request->subject;
-        $ptos->dateStart = $request->dateStart;
-        $ptos->dateEnd = $request->dateEnd;
+        $ptos->date_start = $request->date_start;
+        $ptos->date_end = $request->date_end;
         $ptos->save();
 
         return $ptos;
