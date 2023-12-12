@@ -63,7 +63,10 @@ class AdminsController extends Controller
         if (!$admin) {
             return response()->json(['message' => 'Administrador no encontrado'], 404);
         }
-    
+        if ($admin->id === 1) {
+            return response()->json(['message' => 'No se puede eliminar este administrador'], 403);
+        }
+
         // Elimina al administrador
         $admin->delete();
     
