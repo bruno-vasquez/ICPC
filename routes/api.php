@@ -77,7 +77,6 @@ Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para
 Route::post('/Admins/register', [AdminsController::class, 'register']);
 Route::delete('Admins/{id}', [AdminsController::class, 'deleteAdmin']);
 
-
 Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
 Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
 Route::get('/Eventos/{evento_id}/Interesados', [EventosInteresadosController::class, 'getInteresadosForEvento']);
