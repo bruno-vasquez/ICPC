@@ -52,7 +52,7 @@
     <p>Estimado participante,</p>
     <p>Queremos informarte que ha habido una actualización de información en <b>{{$nombre}}</b>. A continuación, te proporcionamos más detalles:</p>
 
-    <p>{{$reporte}}</p>
+    <p>{{$messageContent }}</p>
 
     <p>Para obtener más información, sobre otros eventos y competencias por favor visita la página:</p>
 

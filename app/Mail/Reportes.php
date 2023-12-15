@@ -19,8 +19,6 @@ class Reportes extends Mailable
     public $subject = 'CodeFusion informa';
     public $messageContent;
     public $nombre;
-    public $reporte;
-
     public function __construct($messageContent, $nombre)
     {
         $this->messageContent = $messageContent;
@@ -30,6 +28,8 @@ class Reportes extends Mailable
     {
         return $this->from('codefusionsoft@gmail.com', 'codefusion')
                 ->view('emails.multiple_recipients')
-                ->subject('Anuncio Importante: ' . $this->nombre);
+                ->subject('Anuncio Importante: ' . $this->nombre)
+                ->with(['messageContent' => $this->messageContent]); 
+                
     }
 }

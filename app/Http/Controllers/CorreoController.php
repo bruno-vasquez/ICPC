@@ -22,8 +22,6 @@ class CorreoController extends Controller
         // Personaliza el contenido del mensaje según tus necesidades
         $contenidoMensaje = $eventos->reporte;
         $nombre = $eventos->nombre;
-        info($nombre);
-
         // Envía el correo a múltiples destinatarios
         Mail::to($emailsInteresados)
         ->send(new Reportes($contenidoMensaje, $nombre, ['subject' => 'Nombre del Evento: ' . $nombre]));

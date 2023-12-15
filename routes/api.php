@@ -8,6 +8,8 @@ use App\Http\Controllers\CompetenciaParticipantesController;
 use App\Http\Controllers\CompetenciaEquiposController;
 use App\Http\Controllers\GanadoresIndividualesController;
 use App\Http\Controllers\GanadoresEquiposController;
+use App\Http\Controllers\EventosController;
+use App\Http\Controllers\CompetenciasController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\PtoController;
 use App\Mail\Reportes;
