@@ -66,23 +66,18 @@ class CompetenciasController extends Controller
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
         $competencias -> umss = $request->umss;
+        $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
         $competencias -> reporte = $request->reporte;
-
-      
-      if ($request->hasFile('imagen')) 
-      {
-        $rutaGuardarImg = 'imagen/';
-        $imagenCompetencia = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
-
-        // Utilizamos el disco "public" de Laravel para almacenar la imagen
-        Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenCompetencia);
-
-        // Construir la URL completa utilizando asset()
-        $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenCompetencia}");
-
-        // Asignar la URL completa a la propiedad en el modelo
-        $competencias->imagen = $urlImagen;
-    }
+        if ($request->hasFile('imagen')) {
+            $rutaGuardarImg = 'imagen/';
+            $imagenCompetencia = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
+        
+            $request->file('imagen')->move($rutaGuardarImg, $imagenCompetencia);
+        
+            // Asignar el nombre de la imagen al modelo
+            $competencias->imagen = $rutaGuardarImg . $imagenCompetencia;
+            $competencias->imagen = asset($competencias->imagen);
+        }
       $competencias -> id_tipoCompetencias = $request -> id_tipoCompetencias;
 
       $competencias -> save();
@@ -145,20 +140,19 @@ class CompetenciasController extends Controller
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
         $competencias -> estado = $request -> estado;
-        $competencias->umss = $request->umss;
+        $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
+        $competencias -> umss = $request->umss;
         $competencias -> reporte = $request->reporte;
 
-        if ($request->hasFile('imagen')) 
-        {
+        if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
             $imagenCompetencia = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenCompetencia);
-    
-            // Construir la URL completa utilizando asset()
-            $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenCompetencia}");
-    
-            // Asignar la URL completa a la propiedad en el modelo
-            $competencias->imagen = $urlImagen;
+        
+            $request->file('imagen')->move($rutaGuardarImg, $imagenCompetencia);
+        
+            // Asignar el nombre de la imagen al modelo
+            $competencias->imagen = $rutaGuardarImg . $imagenCompetencia;
+            $competencias->imagen = asset($competencias->imagen);
         }
         $competencias->id_tipoCompetencias = $request->id_tipoCompetencias;
         // Guardar los cambios en la base de datos    

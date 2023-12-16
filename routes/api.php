@@ -8,7 +8,10 @@ use App\Http\Controllers\CompetenciaParticipantesController;
 use App\Http\Controllers\CompetenciaEquiposController;
 use App\Http\Controllers\GanadoresIndividualesController;
 use App\Http\Controllers\GanadoresEquiposController;
+use App\Http\Controllers\EventosController;
+use App\Http\Controllers\CompetenciasController;
 use App\Http\Controllers\CorreoController;
+use App\Http\Controllers\PtoController;
 use App\Mail\Reportes;
 use Illuminate\Support\Facades\Mail;
 
@@ -69,10 +72,12 @@ Route::delete('/Equipos/{id}','App\Http\Controllers\EquiposController@destroy');
 Route::post('/Equipos','App\Http\Controllers\EquiposController@store'); //crear un registro
 Route::get('/Equipos/{id}','App\Http\Controllers\EquiposController@show'); //para mostrarlos los registros
 
+//admins
 Route::post('/Admins/login', [AdminsController::class, 'login']);
 Route::post('/Admins/logout', [AdminsController::class, 'logout']);
 Route::get('/Admins','App\Http\Controllers\Auth\AdminsController@index'); //para tener todos los registros y mostrarlos
 Route::post('/Admins/register', [AdminsController::class, 'register']);
+Route::delete('Admins/{id}', [AdminsController::class, 'deleteAdmin']);
 
 Route::post('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'addInteresadoToEvento']);
 Route::delete('/Eventos/{evento_Id}/Interesados/{interesado_Id}', [EventosInteresadosController::class, 'removeInteresadoFromEvento']);
@@ -102,4 +107,7 @@ Route::post('/enviar-correoEventos/{evento_id}', [CorreoController::class, 'envi
 Route::post('/enviar-correoCompetenciasIndi/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasIndi']);
 Route::post('/enviar-correoCompetenciasGru/{competencia_id}', [CorreoController::class, 'enviarCorreoCompetenciasGru']);
 
-
+//pto
+Route::get('/Pto','App\Http\Controllers\PtoController@index'); //para tener todos los registros y mostrarlos
+Route::post('/Pto','App\Http\Controllers\PtoController@store'); //crear un registro
+Route::delete('/Pto/{id}','App\Http\Controllers\PtoController@destroy'); //borrar un registro

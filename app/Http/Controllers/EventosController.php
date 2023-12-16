@@ -69,15 +69,12 @@ class EventosController extends Controller
         if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
             $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
-
-            // Utilizamos el disco "public" de Laravel para almacenar la imagen
-            Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenEvento);
-
-            // Construir la URL completa utilizando asset()
-            $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenEvento}");
-
-            // Asignar la URL completa a la propiedad en el modelo
-            $eventos->imagen = $urlImagen;
+        
+            $request->file('imagen')->move($rutaGuardarImg, $imagenEvento);
+        
+            // Asignar el nombre de la imagen al modelo
+            $eventos->imagen = $rutaGuardarImg . $imagenEvento;
+            $eventos->imagen = asset($eventos->imagen);
         }
 
         $eventos->id_tipoEventos = $request->id_tipoEventos;
@@ -125,6 +122,7 @@ class EventosController extends Controller
             'nombre' => 'required|min:3|max:50',
             'descripcion' => 'required|min:4|max:300',
             'fechaIni' => 'required',
+            'email' => 'required',
             'fechaFin' => 'required',
             'requisitos' => 'required',
             'encargado' => 'required|min:3|max:70',
@@ -146,17 +144,15 @@ class EventosController extends Controller
         $eventos->umss = $request->umss;
         $eventos->reporte = $request->reporte;
 
-        if ($request->hasFile('imagen')) 
-        {
+        if ($request->hasFile('imagen')) {
             $rutaGuardarImg = 'imagen/';
             $imagenEvento = uniqid() . '_' . date('YmdHis') . "." . $request->file('imagen')->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs($rutaGuardarImg, $request->file('imagen'), $imagenEvento);
-    
-            // Construir la URL completa utilizando asset()
-            $urlImagen = asset("storage/{$rutaGuardarImg}{$imagenEvento}");
-    
-            // Asignar la URL completa a la propiedad en el modelo
-            $eventos->imagen = $urlImagen;
+        
+            $request->file('imagen')->move($rutaGuardarImg, $imagenEvento);
+        
+            // Asignar el nombre de la imagen al modelo
+            $eventos->imagen = $rutaGuardarImg . $imagenEvento;
+            $eventos->imagen = asset($eventos->imagen);
         }
         $eventos->id_tipoEventos = $request->id_tipoEventos;
         // Guardar los cambios en la base de datos
