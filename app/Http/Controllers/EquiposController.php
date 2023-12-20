@@ -21,21 +21,21 @@ class EquiposController extends Controller
             'nombreEquipo' => 'required | max:30',
 
             'nombreCoach' => 'required | min:3 | max:30' ,
-            'edadCoach' => 'required | size:2' ,
-            'carreraCoach' => 'required | min:3 | max:20' ,
+            'edadCoach' => 'required' ,
+            'carreraCoach' => 'required | min:3 | max:50' ,
             'emailCoach' => 'required' ,
-            'numeroCoach' => 'required | max:8' ,
+            'numeroCoach' => 'required' ,
             'universidadCoach' => 'required' ,
             'semestreCoach' => 'required' ,
 
             'nombre1' => 'required | min:3 | max:30' ,
-            'edad1' => 'required | size:2' ,
-            'carrera1' => 'required | min:3 | max:20' ,
+            'edad1' => 'required' ,
+            'carrera1' => 'required | min:3 | max:50' ,
             'universidad1' => 'required' ,
 
             'nombre2' => 'required | min:3 | max:30' ,
-            'edad2' => 'required | size:2' ,
-            'carrera2' => 'required | min:3 | max:20' ,
+            'edad2' => 'required' ,
+            'carrera2' => 'required | min:3 | max:50' ,
             'universidad2' => 'required',
     ]);
     $equipos = new Equipos();

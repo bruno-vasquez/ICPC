@@ -60,6 +60,8 @@ class EventosController extends Controller
         $eventos->encargado = $request->encargado;
         $eventos->costo = $request->costo;
         $eventos->horarios = $request->horarios;
+        $eventos->horaInicio = $request->horaInicio;
+        $eventos->horaFin = $request->horaFin;
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
         $eventos->umss = $request->umss;
@@ -142,6 +144,8 @@ class EventosController extends Controller
         $eventos->encargado = $request->encargado;
         $eventos->costo = $request->costo;
         $eventos->horarios = $request->horarios;
+        $eventos->horaInicio = $request->horaInicio;
+        $eventos->horaFin = $request->horaFin;
         $eventos->lugar = $request->lugar;
         $eventos->estado = $request->estado;
         $eventos->umss = $request->umss;

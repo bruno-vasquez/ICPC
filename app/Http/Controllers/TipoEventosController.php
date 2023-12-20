@@ -37,6 +37,9 @@ class TipoEventosController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $request->validate([
+            'nombre' => 'required | min:3 | max:40' ,
+        ]);
         $tipoEventos = new TipoEventos();
         $tipoEventos -> nombre = $request -> nombre;
 

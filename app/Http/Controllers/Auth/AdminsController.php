@@ -39,7 +39,6 @@ class AdminsController extends Controller
         $credentials = $request->only('email', 'password');      
         if (Auth::attempt($credentials)) 
         {
-            info("hola");
         // Autenticación exitosa
             return response()->json(['message' => 'Autenticación exitosa'], 200);
         } else {

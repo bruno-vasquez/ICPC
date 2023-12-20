@@ -24,6 +24,8 @@ class Competencias extends Migration
             $table->string('email');
             $table->string('lugar');
             $table->string('costo');
+            $table->string('horaInicio')->nullable();
+            $table->string('horaFin')->nullable();
             $table->string('horarios')->nullable();
             $table->string('estado');
             $table->string('umss');

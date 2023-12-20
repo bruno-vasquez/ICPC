@@ -39,13 +39,13 @@ class InteresadosController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'nombre' => 'required | min:3 | max:30' ,
-            'apellidos' => 'required | min:3 | max:30' ,
+            'nombre' => 'required | min:3 | max:50' ,
+            'apellidos' => 'required | min:3 | max:50' ,
             'fecha_Nacimiento' => 'required' ,
             'ci' => 'required' ,
-            'telefono' => 'required | max:8' ,
+            'telefono' => 'required' ,
             'email' => 'required' ,
-            'carrera' => 'min:3 | max:20',
+            'carrera' => 'required',
         ]);
         $interesados = new Interesados ();
         $interesados->nombre = $request->nombre;
@@ -96,13 +96,13 @@ class InteresadosController extends Controller
     public function update(Request $request, Interesados $interesados)
     { 
         $validation = $request->validate([
-            'nombre' => 'required | min:3 | max:30' ,
-            'apellidos' => 'required | min:3 | max:30' ,
+            'nombre' => 'required | min:3 | max:50' ,
+            'apellidos' => 'required | min:3 | max:50' ,
             'fecha_Nacimiento' => 'required' ,
             'ci' => 'required' ,
-            'telefono' => 'required | max:8' ,
+            'telefono' => 'required' ,
             'email' => 'required' ,
-            'carrera' => 'min:3 | max:20',
+            'carrera' => 'min:3 | max:50',
         ]);
         $interesados = Interesados::findOrFail ($request->id);
         $interesados->nombre = $request->nombre;

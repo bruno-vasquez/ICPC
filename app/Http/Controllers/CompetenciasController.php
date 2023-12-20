@@ -64,6 +64,8 @@ class CompetenciasController extends Controller
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
+        $competencias -> horaInicio = $request-> horaInicio;
+        $competencias -> horaFin = $request -> horaFin;
         $competencias -> estado = $request -> estado;
         $competencias -> umss = $request->umss;
         $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
@@ -143,6 +145,8 @@ class CompetenciasController extends Controller
         $competencias -> lugar = $request -> lugar;
         $competencias -> costo = $request -> costo;
         $competencias -> horarios = $request -> horarios;
+        $competencias -> horaInicio = $request-> horaInicio;
+        $competencias -> horaFin = $request -> horaFin;
         $competencias -> estado = $request -> estado;
         $competencias -> numeroIntegrantes = $request -> numeroIntegrantes;
         $competencias -> umss = $request->umss;
